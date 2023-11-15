@@ -18,23 +18,32 @@ class Dashboard extends CI_Controller {
             $data["nombre_usuario"] = $this->session->userdata('nombres');
             $data["rol_usuario"] = $this->session->userdata('rol');
             $this->load->view('Dashboard/dashboard', $data);
-           
         } else {
             redirect(site_url('Dashboard/login'));
         }
-        
     }
 
     public function login() {
         $data["mensaje"] = "";
+        $data["correo"] = "";
         if ($this->input->server("REQUEST_METHOD") == "POST") {
             $correo = $this->input->post("correo");
             $password = $this->input->post("password");
+            
+            // Validar que se ingresen todos los datos
+            if(empty($correo) || empty($password)){
+                $data["mensaje"] = "Debe ingresar todos los datos";
+                $this->load->view('usuario/login_pulguero', $data);
+                return;
+            }
             // Obtén información del usuario por correo
-
+            echo "<script>console.log('Debug Objects: " . $correo . " " . $password . "' );</script>";
+            $data["correo"] = $correo;
             $info_usuario = $this->Usuario->verificar_correo($correo);
-            if(isset( $info_usuario)){
+            if(!$info_usuario){
                 $data["mensaje"] = "Correo electronico incorrecto";
+                $this->load->view('usuario/login_pulguero', $data);
+                return;
             }
             $info_cuenta = $this->Cuenta->verificar_contrasena($info_usuario->id_user);
             
@@ -93,7 +102,6 @@ class Dashboard extends CI_Controller {
         }else{
             redirect('Dashboard/data');
         }
-       
     }
 
     public function data() {
@@ -110,6 +118,4 @@ class Dashboard extends CI_Controller {
         $this->session->sess_destroy();
         redirect(site_url('Dashboard/login'), 'refresh');
     }
-
-
 }

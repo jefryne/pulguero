@@ -25,21 +25,25 @@
           <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
-                <h3 class="card-title text-left mb-3">Login</h3>
+                <h2 class="card-title text-left mb-3 "><strong>¡Bienvenido! 👋🏻</strong></h2>
+                <?php if (!empty($mensaje)): ?>
+                      <div class="alert alert-danger" role="alert">
+                          <?= $mensaje ?>
+                      </div>
+                <?php endif; ?>
                 <?php echo form_open('');?>
-               
                   <div class="form-group">
                       <label>Correo Electronico</label>
                       <?php
                           $data = [
                               'name'      => 'correo',
-                              'value'     => '',
+                              'value'     => (!empty($correo)) ? $correo : '',
                               'type'      => 'correo',
                               'class'     => 'form-control p_input"', 
                               'placeholder' => 'Ingrese el correo'
                           ];
                           echo form_input($data);
-                          ?>   
+                      ?>   
                   </div>
                   <div class="form-group">
                       <label>Contraseña</label>
@@ -52,38 +56,22 @@
                               'placeholder' => 'Ingrese la contraseña'
                           ];
                           echo form_input($data);
-                          ?>
-   
+                      ?>
                   </div>
-                  <a href="#" class="forgot-pass">Recuperar contraseña</a>
+                  <div class="mb-2">
+                    <a href="#" class="forgot-pass">Recuperar contraseña</a>
+                  </div>
                   <?php 
                       $data = array(
                           'name' => 'mysubmit',
                           'id'  =>  'boton',
                           'type' => 'submit',
                           'class' => 'btn btn-primary btn-block enter-btn',
-                          'content' => '!enviar'
+                          'content' => 'INICIAR SESION'
                       );
                       echo form_button($data)
                   ?> 
-
-
               <?php echo form_close();?>
-              <div class="d-flex">
-                    <button class="btn btn-facebook mr-2 col">
-                      <i class="mdi mdi-facebook"></i> Facebook </button>
-                    <button class="btn btn-google col">
-                      <i class="mdi mdi-google-plus"></i> Google plus </button>
-              </div>
-              <?php 
-                  if($mensaje != ""){
-              ?>        
-                      <div class="alert alert-danger" role="alert">
-                      <?php echo $mensaje; ?>
-                      </div>
-              <?php         
-                  }
-              ?>
               </div>
             </div>
           </div>
