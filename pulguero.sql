@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2023 a las 16:11:50
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 19-11-2023 a las 22:11:31
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,6 +64,13 @@ CREATE TABLE `category` (
   `category_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `category`
+--
+
+INSERT INTO `category` (`id_category`, `category_name`) VALUES
+(1, 'dulces');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +86,13 @@ CREATE TABLE `history` (
   `transaction_status` enum('Compra','Venta') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `history`
+--
+
+INSERT INTO `history` (`id_history`, `id_inventory`, `id_user`, `id_client`, `date_history`, `transaction_status`) VALUES
+(1, 1, 1, 2, '2023-11-19 05:51:33', 'Compra');
+
 -- --------------------------------------------------------
 
 --
@@ -87,12 +101,20 @@ CREATE TABLE `history` (
 
 CREATE TABLE `inventory` (
   `id_inventory` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(150) NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_category` int(10) UNSIGNED NOT NULL,
   `cost` int(10) UNSIGNED NOT NULL,
   `price` int(10) UNSIGNED NOT NULL,
   `status_inventory` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inventory`
+--
+
+INSERT INTO `inventory` (`id_inventory`, `nombre`, `id_user`, `id_category`, `cost`, `price`, `status_inventory`) VALUES
+(1, 'caramelo', 2, 1, 100, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -212,19 +234,19 @@ ALTER TABLE `accumulated`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `history`
 --
 ALTER TABLE `history`
-  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `liquidation`

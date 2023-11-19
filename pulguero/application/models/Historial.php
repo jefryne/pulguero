@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends CI_Model {
+class Historial extends CI_Model {
 
-    Public $table = 'users';
-    Public $table_id = 'id_user';
+    Public $table = 'history';
+    Public $table_id = 'id_history';
 
     Public function __construct(){
         parent::__construct();
@@ -16,26 +16,6 @@ class Usuario extends CI_Model {
         $this->db->select();
         $this->db->from($this->table);
 
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function usuariosEmpresa() {
-        $this->db->select();
-        $this->db->from($this->table);
-        
-        $this->db->where_in('rol', ['Admin', 'Supervisor']);
-    
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function usuariosCliente() {
-        $this->db->select();
-        $this->db->from($this->table);
-        
-        $this->db->where_in('rol', ['Cliente', 'Vendedor']);
-    
         $query = $this->db->get();
         return $query->result();
     }
@@ -118,6 +98,9 @@ class Usuario extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+
+
 
     public function insert($data){
         $this->db->insert($this->table, $data);
