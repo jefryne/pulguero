@@ -98,5 +98,13 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/historial">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">crear historial</span>
+            </a>
+          </li>
         </ul>
       </nav>
