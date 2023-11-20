@@ -226,14 +226,14 @@
                       <table class="table table-striped mt-5">
                         <thead>
                           <tr>
-                            <th> logo </th>
-                            <th> nombre </th>
-                            <th> id </th>
-                            <th> id_usuario name </th>
-                            <th> id_categoria </th>
-                            <th> costo </th>
-                            <th> precio </th>
-                            <th> estado </th>
+                            <th>logo</th>
+                            <!-- <th> id </th> -->
+                            <th>Nombre Usuario</th>
+                            <th>Nombre Articulo</th>
+                            <th>Categoria</th>
+                            <th>Costo</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -242,14 +242,13 @@
                             <td class="py-1">
                               <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
                             </td>
-                            <td><?= $inventario->id_inventory;?></td>
-                            <td><?= $inventario->nombre;?></td>
-                            <td><?= $inventario->id_user;?></td>
-                            <td><?= $inventario->id_category;?></td>
+                            <!-- <td><?= $inventario->id_inventory;?></td> -->
+                            <td><?= $inventario->nombre_usuario;?></td>
+                            <td><?= $inventario->nombre_articulo;?></td>
+                            <td><?= $inventario->nombre_categoria;?></td>
                             <td><?= $inventario->cost;?></td>
                             <td><?= $inventario->price;?></td>
                             <td><?= $inventario->status_inventory;?></td>
-
                           </tr>
                         <?php endforeach; ?>
                         </tbody>

@@ -57,7 +57,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="http://[::1]/pulguero/index.php/Dashboard/dashboard">
+            <a class="nav-link" href="/dashboard">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -91,7 +91,7 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/crearCategoria">crear categoria</a></li>
+                <li class="nav-item"> <a class="nav-link" href="Inventarios/crearCategoria">Crear categoria</a></li>
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/listadoInventario"> Listado Inventario </a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>

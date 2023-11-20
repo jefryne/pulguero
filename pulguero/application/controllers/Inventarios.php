@@ -26,8 +26,10 @@ class Inventarios extends CI_Controller {
                     $data["id_user"] = $this->input->post("id_user");
                     $data["id_category"] = $this->input->post("id_category");
                     $data["cost"] = $this->input->post("cost");
+                    $data["nombre"] = $this->input->post("nombre");
                     $data["price"] = $this->input->post("price");
-                    $this->Inventario->insert($data);  
+                    $this->Inventario->insert($data);
+                    redirect(site_url('Inventarios/listadoInventario'));
                 }
             }else{
                 redirect(site_url('Dashboard/dashboard'));
@@ -48,6 +50,7 @@ class Inventarios extends CI_Controller {
                 if ($this->input->server("REQUEST_METHOD") == "POST") {
                     $data["category_name"] = $this->input->post("category_name");
                     $this->Categoria->insert($data);  
+                    redirect(site_url('Inventarios/inventario'));
                 }
                 $this->load->view('inventario/crear_categoria');
 
@@ -66,7 +69,7 @@ class Inventarios extends CI_Controller {
         if ($this->session->userdata('id_usuario')) {
             if($this->session->userdata('rol') == 'Admin' or $this->session->userdata('rol') == 'SuperVisor')
             {
-                $vdata["inventarios"] = $this->Inventario->findAll();
+                $vdata["inventarios"] = $this->Inventario->obtenerDatosInventario();
                 $this->load->view('inventario/lista_inventario', $vdata);
 
             }else{

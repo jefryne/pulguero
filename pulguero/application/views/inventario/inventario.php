@@ -248,7 +248,7 @@
                         }
                         
 
-                        echo form_dropdown('id_user', $options, 'large', 'class="form-control"');
+                        echo form_dropdown('id_user', $options, 'large', 'class="form-control mb-3"');
                       ?>
                       <?php
                         echo form_label('Categoria', 'categoria');
@@ -258,7 +258,20 @@
                         }
                         
 
-                        echo form_dropdown('id_category', $options, 'large', 'class="form-control"');
+                        echo form_dropdown('id_category', $options, 'large', 'class="form-control mb-3"');
+                      ?>
+                      <?php
+                        echo form_label('Nombre', 'nombre');
+
+                        $data = [
+                            'name'      => 'nombre',
+                            'value'     => '',
+                            'placeholder' => 'Ingrese el nombre del articulo',
+                            'type'     => 'text',
+                            'class'     => 'form-control input-lg mb-3', 
+                        ];
+                        echo form_input($data);
+                        
                       ?>
                       <?php
                               echo form_label('Costo', 'costo');
@@ -268,7 +281,7 @@
                                   'value'     => '',
                                   'placeholder' => 'Ingrese el costo',
                                   'type'     => 'number',
-                                  'class'     => 'form-control input-lg', 
+                                  'class'     => 'form-control input-lg mb-3', 
                               ];
                               echo form_input($data);
                         ?>
@@ -280,7 +293,7 @@
                                   'value'     => '',
                                   'placeholder' => 'Ingrese el precio',
                                   'type'     => 'number',
-                                  'class'     => 'form-control input-lg', 
+                                  'class'     => 'form-control input-lg mb-3', 
                               ];
                               echo form_input($data);
                         ?>
@@ -291,12 +304,10 @@
                               'id'  =>  'boton',
                               'type' => 'submit',
                               'class' => 'btn btn-primary mt-2',
-                              'content' => '!enviar'
+                              'content' => 'Continuar'
                           );
                           echo form_button($data)
                       ?> 
-
-
                   <?php echo form_close();?>
                   </div>
                 </div>

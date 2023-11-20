@@ -44,47 +44,6 @@
               </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="<?php echo base_url();?>../../#">+ Create New Project</a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-                  <h6 class="p-3 mb-0">Projects</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-file-outline text-primary"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Development</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-web text-info"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">UI Development</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-layers text-danger"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Testing</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">See all projects</p>
-                </div>
-              </li>
               <li class="nav-item nav-settings d-none d-lg-block">
                 <a class="nav-link" href="<?php echo base_url();?>../../#">
                   <i class="mdi mdi-view-grid"></i>
@@ -223,7 +182,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
+          <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card corona-gradient-card">
                   <div class="card-body py-0 px-0 px-sm-3">
@@ -231,7 +190,7 @@
                       <!-- <div class="col-4 col-sm-3 col-xl-2">
                         <img src="../../assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
                       </div> -->
-                      <div class=col-lg-6 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;font-size: 24px;>
+                      <div class="col-lg-6 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;font-size: 24px;">
                         
                         <h4 class="mb-1 mb-sm-0">BIENVENID@  <?php echo $nombre_usuario; ?> </h4>
                          <span><?php echo $rol_usuario; ?></span>
@@ -279,9 +238,7 @@
                   </div>
                 </div>
               </div>
-              
             </div>
-          
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
