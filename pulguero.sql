@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2023 a las 22:11:31
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Tiempo de generación: 21-11-2023 a las 16:50:42
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,8 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id_account`, `id_user`, `password`) VALUES
 (2, 6, '$2y$10$2PogFAa/NgCqwjmDOjRtPOPCERVhsgiVBZf1NQ49Yd0nZb0JCOl.u'),
-(3, 1, '$2y$10$u6o26CeyFgWuycFkg0dhsOF7anfXAzzwOGQ6rM.b0oQCdLU7ktEF6');
+(3, 1, '$2y$10$u6o26CeyFgWuycFkg0dhsOF7anfXAzzwOGQ6rM.b0oQCdLU7ktEF6'),
+(4, 18, '$2y$10$ynCrVpy6IcFkiJTx4WpIUuS6N3AWa0UAnOuxY9bhRLGKL8Dmt07Ne');
 
 -- --------------------------------------------------------
 
@@ -52,6 +53,14 @@ CREATE TABLE `accumulated` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `accumulated`
+--
+
+INSERT INTO `accumulated` (`id_accumulated`, `id_user`, `quantity`) VALUES
+(1, 15, 0),
+(2, 16, 80);
 
 -- --------------------------------------------------------
 
@@ -83,7 +92,7 @@ CREATE TABLE `history` (
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_client` int(10) UNSIGNED NOT NULL,
   `date_history` timestamp NOT NULL DEFAULT current_timestamp(),
-  `transaction_status` enum('Compra','Venta') NOT NULL
+  `transaction_status` enum('Venta') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -91,7 +100,10 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`id_history`, `id_inventory`, `id_user`, `id_client`, `date_history`, `transaction_status`) VALUES
-(1, 1, 1, 2, '2023-11-19 05:51:33', 'Compra');
+(1, 1, 1, 2, '2023-11-19 05:51:33', 'Venta'),
+(2, 1, 1, 16, '2023-11-21 13:53:56', 'Venta'),
+(9, 1, 18, 16, '2023-11-21 15:41:50', 'Venta'),
+(10, 1, 18, 15, '2023-11-21 15:45:55', 'Venta');
 
 -- --------------------------------------------------------
 
@@ -102,6 +114,7 @@ INSERT INTO `history` (`id_history`, `id_inventory`, `id_user`, `id_client`, `da
 CREATE TABLE `inventory` (
   `id_inventory` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(150) NOT NULL,
+  `descripcion` text NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_category` int(10) UNSIGNED NOT NULL,
   `cost` int(10) UNSIGNED NOT NULL,
@@ -113,8 +126,8 @@ CREATE TABLE `inventory` (
 -- Volcado de datos para la tabla `inventory`
 --
 
-INSERT INTO `inventory` (`id_inventory`, `nombre`, `id_user`, `id_category`, `cost`, `price`, `status_inventory`) VALUES
-(1, 'caramelo', 2, 1, 100, 200, 1);
+INSERT INTO `inventory` (`id_inventory`, `nombre`, `descripcion`, `id_user`, `id_category`, `cost`, `price`, `status_inventory`) VALUES
+(1, 'caramelo', 'de chocolate', 2, 1, 100, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -153,11 +166,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `document_number`, `user_name`, `user_last_name`, `email`, `rol`, `status_user`, `cellphone`) VALUES
 (1, '777', 'fefe', 'nunez', 'fefe@gmail.com', 'Admin', 1, '44445'),
 (2, '100', 'pepe', 'dasd', 'sad', 'Cliente', 1, 'asd'),
-(4, '100', 'pepe', 'dasd', 'sadfff', 'Cliente', 1, 'asd'),
 (6, '000', 'luna', '', 'luna@gmail.com', 'Admin', 1, ''),
-(8, '767', '5675', '7567', '657', 'SuperVisor', 1, '6575'),
-(9, '657', 'fgh', 'fgh', 'fgh', 'SuperVisor', 1, 'fgh'),
-(10, '435', 'dfgdfg', 'dfgdfg', 'dfgdfg', 'Vendedor', 1, 'dfgdfg');
+(15, '333', 'luna', 'perez', 'luna4454@gmail.com', 'Vendedor', 1, '8888'),
+(16, '0101', 'pepi', 'toto', 'pepi@gmail.com', 'Vendedor', 1, '8888'),
+(17, '8888', 'supervisor', 'visor', 'popo@gmail.com', 'SuperVisor', 1, '123'),
+(18, '987', 'monica', 'acosta', 'moni@gmail.com', 'SuperVisor', 1, '313560');
 
 --
 -- Índices para tablas volcadas
@@ -222,13 +235,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `account`
 --
 ALTER TABLE `account`
-  MODIFY `id_account` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_account` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `accumulated`
 --
 ALTER TABLE `accumulated`
-  MODIFY `id_accumulated` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_accumulated` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `category`
@@ -240,7 +253,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT de la tabla `history`
 --
 ALTER TABLE `history`
-  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
@@ -258,7 +271,7 @@ ALTER TABLE `liquidation`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
