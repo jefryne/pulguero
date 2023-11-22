@@ -106,6 +106,16 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
+/* Cambia el color de fondo de los botones a azulclaritro pa */
+.btn-default,
+.btn-secondary {
+    background-color: #0090e7 !important;
+    border-color: #0090e7 !important;
+    color: white !important;
+}
+
+
 @-moz-keyframes flash {
   0% {
     opacity: 1; }

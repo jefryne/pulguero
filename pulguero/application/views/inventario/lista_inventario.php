@@ -227,7 +227,7 @@
         </nav>
         <!-- partial -->
  
-        <div class="card">
+        <div class="card w-50">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -266,7 +266,7 @@
               
               <!-- /.card-body -->
         </div>
-        <div class="card">
+        <div class="card w-50">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -277,7 +277,6 @@
                   <tr>
                     <th>logo</th>
                     <th>id inventario</th>
-         
                   </tr>
                   </thead>
                   <tbody id="cuerpoTabla">
@@ -335,7 +334,7 @@
       $(function () {
         $("#example1").DataTable({
           "responsive": true, "lengthChange": false, "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
           "paging": true,
