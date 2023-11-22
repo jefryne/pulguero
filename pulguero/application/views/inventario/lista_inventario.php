@@ -241,7 +241,7 @@
                     <th>provedor</th>
                     <th>articulon</th>
                     <th>descripcion</th>
-                    <th>descripcion</th>
+                    <th>agregar</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -250,11 +250,11 @@
                             <td class="py-1">
                               <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
                             </td>
-                            <td><?= $inventario->id_inventory;?></td>
-                            <td><?= $inventario->nombre_usuario;?></td>
-                            <td><?= $inventario->nombre_articulo;?></td>
-                            <td><?= $inventario->descripcion_articulo;?></td>
-                            <td><?= $inventario->descripcion_articulo;?></td>
+                            <td class="id_inventario"><?= $inventario->id_inventory;?></td>
+                            <td class="nombre_usuario"><?= $inventario->nombre_usuario;?></td>
+                            <td class="nombre_articulo"><?= $inventario->nombre_articulo;?></td>
+                            <td class="descripcion_articulo"><?= $inventario->descripcion_articulo;?></td>
+                            <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
                  
                           </tr>
                         <?php endforeach; ?>
@@ -272,7 +272,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
+                <table id="tablaProductos" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>logo</th>
@@ -280,21 +280,11 @@
          
                   </tr>
                   </thead>
-                  <tbody>
-                     <?php foreach ($inventarios as $key => $inventario): ?>
-                          <tr>
-                            <td class="py-1">
-                              <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
-                            </td>
-                            <td><?= $inventario->id_inventory;?></td>
-     
-                 
-                          </tr>
-                        <?php endforeach; ?>
+                  <tbody id="cuerpoTabla">
                   </tbody>
-                 
+                    
                 </table>
-             
+                <button id="botonEnviar" class="btn btn-primary">Agregar</button>
               </div>
               
               <!-- /.card-body -->
@@ -336,6 +326,7 @@
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/agregar_items.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
