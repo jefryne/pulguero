@@ -12,8 +12,9 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Luna</h5>
-                  <span>Admin</span>
+                  <h5 class="mb-0 font-weight-normal"><?php echo $nombre_usuario; ?></h5>
+                  <h5 class="mb-0 font-weight-normal"><?php echo $rol_usuario; ?></h5>
+                  <span></span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -57,7 +58,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="http://[::1]/pulguero/index.php/Dashboard/dashboard">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -77,6 +78,8 @@
               <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/register"> Registrar</a></li>
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/listadoUsuarios">Lista usuarios</a></li>
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/crear_cuenta"> Crear cuenta </a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Acumulados/listadoAcumulados"> Acumulados </a></li>
+
               </ul>
             </div>
           </li>
@@ -91,20 +94,28 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="Inventarios/crearCategoria">Crear categoria</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/crearCategoria">Crear categoria</a></li>
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/listadoInventario"> Listado Inventario </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/inventario"> Crear inventario </a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/historial">
+            <a class="nav-link" data-toggle="collapse" href="#historial_nav" aria-expanded="false" aria-controls="historial_nav">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">crear historial</span>
+              <span class="menu-title">Historial</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="historial_nav">
+              <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/historial">Crear Historial</a></li>
+              <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/listadoHistorial">Lista Historial</a></li>
+
+              </ul>
+            </div>
           </li>
+          
         </ul>
       </nav>

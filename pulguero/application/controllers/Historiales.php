@@ -14,11 +14,15 @@ class Historiales extends CI_Controller {
         $this->load->model('Historial');
         $this->load->library('session');
         $this->load->model('Cuenta');
+        $this->load->model('Acumulado');
+        
     }
 
     public function historial($id_history = null){
+        $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+        $vdata["rol_usuario"] = $this->session->userdata('rol');
         if ($this->session->userdata('id_usuario')) {
-            if($this->session->userdata('rol') == 'Admin'){
+            if($this->session->userdata('rol') == 'Admin' or  $this->session->userdata('rol') == 'SuperVisor'){
                 $vdata["resgistros_inventario"] = $this->Inventario->findAll();
                 $vdata["usuarios"] = $this->Usuario->usuariosEmpresa();
                 $vdata["usuarios_cliente"] = $this->Usuario->usuariosCliente();
@@ -40,13 +44,22 @@ class Historiales extends CI_Controller {
                         redirect(site_url('Usuarios/listadoUsuarios'));
                     }else{
                         $this->Historial->insert($data);  
+
+                        $registro_inventario  = $this->Inventario->find($data["id_inventory"]);
+                        $pocentaje = $registro_inventario->price * 0.1;
+                        $accumulated_info = $this->Acumulado->find($registro_inventario->id_user);
+
+                        $id_accumulated = $accumulated_info->id_accumulated;
+                        $cantidad_acumulada = $accumulated_info->quantity;
+
+                        $cantidad_acumulada_actual["quantity"] =  ($pocentaje+$cantidad_acumulada);
+                        $this->Acumulado->update($id_accumulated , $cantidad_acumulada_actual);
                         redirect(site_url('Usuarios/listadoUsuarios'));
                     }
-                    
                     $this->load->view('historial/crear_historial', $vdata);
                     return;
                 }
-        
+             
                 $this->load->view('historial/crear_historial' , $vdata);
                 
             }else{
@@ -58,4 +71,23 @@ class Historiales extends CI_Controller {
         }
     }
 
+
+    public function listadoHistorial()
+    {
+        if ($this->session->userdata('id_usuario')) {
+            if($this->session->userdata('rol') == 'Admin' or $this->session->userdata('rol') == 'SuperVisor')
+            {
+                $vdata["historiales"] = $this->Historial->findAll();
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
+                $this->load->view('historial/lista_historial', $vdata);
+
+            }else{
+                redirect(site_url('Dashboard/dashboard'));
+            }
+           
+        } else {
+            redirect(site_url('Dashboard/login'));
+        }
+    }
 }

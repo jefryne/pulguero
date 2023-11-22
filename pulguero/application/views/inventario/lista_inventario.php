@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Corona Admin</title>
     <!-- plugins:css -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="<?php echo base_url();?>plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>dist/css/adminlte.min.css">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.3.67/css/materialdesignicons.min.css" integrity="sha512-nRzny9w0V2Y1/APe+iEhKAwGAc+K8QYCw4vJek3zXhdn92HtKt226zHs9id8eUq+uYJKaH2gPyuLcaG/dE5c7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
@@ -25,7 +33,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:<?php echo base_url();?>partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
+        <nav class="navbar p-0 fixed-top d-flex flex-row mb-5">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="<?php echo base_url();?>index.html"><img src="<?php echo base_url();?>assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
@@ -218,61 +226,85 @@
           </div>
         </nav>
         <!-- partial -->
-              
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped mt-5">
-                        <thead>
-                          <tr>
-                            <th>logo</th>
-                            <!-- <th> id </th> -->
-                            <th>Nombre Usuario</th>
-                            <th>Nombre Articulo</th>
-                            <th>Categoria</th>
-                            <th>Costo</th>
-                            <th>Precio</th>
-                            <th>Estado</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($inventarios as $key => $inventario): ?>
+ 
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>logo</th>
+                    <th>id inventario</th>
+                    <th>provedor</th>
+                    <th>articulon</th>
+                    <th>descripcion</th>
+                    <th>descripcion</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                     <?php foreach ($inventarios as $key => $inventario): ?>
                           <tr>
                             <td class="py-1">
                               <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
                             </td>
-                            <!-- <td><?= $inventario->id_inventory;?></td> -->
+                            <td><?= $inventario->id_inventory;?></td>
                             <td><?= $inventario->nombre_usuario;?></td>
                             <td><?= $inventario->nombre_articulo;?></td>
-                            <td><?= $inventario->nombre_categoria;?></td>
-                            <td><?= $inventario->cost;?></td>
-                            <td><?= $inventario->price;?></td>
-                            <td><?= $inventario->status_inventory;?></td>
+                            <td><?= $inventario->descripcion_articulo;?></td>
+                            <td><?= $inventario->descripcion_articulo;?></td>
+                 
                           </tr>
                         <?php endforeach; ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
+                  </tbody>
+                 
+                </table>
+             
               </div>
-            </div>
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:<?php echo base_url();?>partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
-          <!-- partial -->
+              
+              <!-- /.card-body -->
         </div>
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>logo</th>
+                    <th>id inventario</th>
+         
+                  </tr>
+                  </thead>
+                  <tbody>
+                     <?php foreach ($inventarios as $key => $inventario): ?>
+                          <tr>
+                            <td class="py-1">
+                              <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
+                            </td>
+                            <td><?= $inventario->id_inventory;?></td>
+     
+                 
+                          </tr>
+                        <?php endforeach; ?>
+                  </tbody>
+                 
+                </table>
+             
+              </div>
+              
+              <!-- /.card-body -->
+        </div>  
+  
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
@@ -288,5 +320,42 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
+    <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="<?php echo base_url();?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/jszip/jszip.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url();?>dist/js/demo.js"></script>
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
   </body>
 </html>

@@ -21,12 +21,15 @@ class Inventarios extends CI_Controller {
             if($this->session->userdata('rol') == 'Admin' or $this->session->userdata('rol') == 'SuperVisor'){
                 $vdata["usuarios"] = $this->Usuario->usuariosCliente();
                 $vdata["categorias"] = $this->Categoria->findAll();
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
                 $this->load->view('inventario/inventario', $vdata);
                 if ($this->input->server("REQUEST_METHOD") == "POST") {
                     $data["id_user"] = $this->input->post("id_user");
                     $data["id_category"] = $this->input->post("id_category");
                     $data["cost"] = $this->input->post("cost");
                     $data["nombre"] = $this->input->post("nombre");
+                    $data["descripcion"] = $this->input->post("descripcion");
                     $data["price"] = $this->input->post("price");
                     $this->Inventario->insert($data);
                     redirect(site_url('Inventarios/listadoInventario'));
@@ -52,7 +55,9 @@ class Inventarios extends CI_Controller {
                     $this->Categoria->insert($data);  
                     redirect(site_url('Inventarios/inventario'));
                 }
-                $this->load->view('inventario/crear_categoria');
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
+                $this->load->view('inventario/crear_categoria',$vdata);
 
             }else{
                 redirect(site_url('Dashboard/dashboard'));
@@ -70,6 +75,8 @@ class Inventarios extends CI_Controller {
             if($this->session->userdata('rol') == 'Admin' or $this->session->userdata('rol') == 'SuperVisor')
             {
                 $vdata["inventarios"] = $this->Inventario->obtenerDatosInventario();
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
                 $this->load->view('inventario/lista_inventario', $vdata);
 
             }else{

@@ -11,6 +11,7 @@ class Usuarios extends CI_Controller {
 		$this->load->model('Usuario');
         $this->load->library('session');
         $this->load->model('Cuenta');
+        $this->load->model('Acumulado');
     }
 
 	public function listadoUsuarios($user_estado = null)
@@ -24,7 +25,8 @@ class Usuarios extends CI_Controller {
                 }elseif ($user_estado == 0) {
                     $vdata["usuarios"] = $this->Usuario->obtenerUsuariosInactivos(); 
                 }
-                
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
                 $this->load->view('usuario/listadoUsuarios', $vdata);
             }elseif($this->session->userdata('rol') == 'SuperVisor'){
                 
@@ -53,6 +55,7 @@ class Usuarios extends CI_Controller {
 
 
 	public function register($id_usuario = null){
+   
         if ($this->session->userdata('id_usuario')) {
             if($this->session->userdata('rol') == 'Admin'){
                 $vdata["estado"] = $vdata["rol"] = $vdata["documento"] = $vdata["nombre"] = $vdata["apellido"] = $vdata["correoElectrónico"] = $vdata["numeroTelefono"] = "";
@@ -69,6 +72,7 @@ class Usuarios extends CI_Controller {
                         $vdata["rol"] = $usuario->rol;
                         $vdata["estado"] = $usuario->status_user;
                         $vdata["numeroTelefono"] = $usuario->cellphone;
+                
                     }
         
                 }
@@ -80,8 +84,9 @@ class Usuarios extends CI_Controller {
                     $data["user_last_name"] = $this->input->post("apellido");
                     $data["rol"] = $this->input->post("rol");
                     $data["cellphone"] = $this->input->post("numeroTelefono");
-                    
-        
+         
+
+
                     $vdata["documento"] = $this->input->post("documento");
                     $vdata["nombre"] = $this->input->post("nombre");
                     $vdata["apellido"] = $this->input->post("apellido");
@@ -93,14 +98,22 @@ class Usuarios extends CI_Controller {
                         $this->Usuario->update($id_usuario, $data);  
                         redirect(site_url('Usuarios/listadoUsuarios'));
                     }else{
-                        $this->Usuario->insert($data);  
+                        $id_usuario_insert = $this->Usuario->insert($data); 
+                        if($data["rol"] == "Vendedor"){
+                            $data_accumulated["id_user"] = $id_usuario_insert;
+                            $data_accumulated["quantity"] =  0;
+                            $this->Acumulado->insert($data_accumulated);
+                            
+                        } 
                         redirect(site_url('Usuarios/listadoUsuarios'));
                     }
-                    
+                    $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                    $vdata["rol_usuario"] = $this->session->userdata('rol');
                     $this->load->view('usuario/registrar_actualizar', $vdata);
                     return;
                 }
-        
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
                 $this->load->view('usuario/registrar_actualizar' , $vdata);
                 
             }else{
@@ -120,6 +133,8 @@ class Usuarios extends CI_Controller {
             $vdata["nombre"] = $usuario->nombre;
             $vdata["password"] = $usuario->password;
 			$vdata["correo"] = $usuario->correo;
+            $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+            $vdata["rol_usuario"] = $this->session->userdata('rol');
 
         }else{
             $vdata["nombre"] = $vdata["password"] =  $vdata["correo"] = "";
@@ -134,6 +149,7 @@ class Usuarios extends CI_Controller {
                 if($this->input->server("REQUEST_METHOD")=="POST"){
                     $data["id_user"] = $this->input->post("id_user");
                     $data["password"] = password_hash($this->input->post("password"), PASSWORD_BCRYPT);
+             
                     if(isset($data["id_user"]) && isset($data["password"])){
                         $this->Cuenta->insert($data);  
                         redirect(site_url('Dashboard/login'));
@@ -141,6 +157,8 @@ class Usuarios extends CI_Controller {
                     }
                 }else{
                     $vdata["usuarios"] = $this->Usuario->usuariosEmpresa();
+                    $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                    $vdata["rol_usuario"] = $this->session->userdata('rol');
                     $this->load->view('Dashboard/crear_cuenta' , $vdata);
                 }
             }else{

@@ -223,7 +223,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Formulario Usuario </h3>
+              <h3 class="page-title"> Formulario Inventario </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="<?php echo base_url();?>#">Forms</a></li>
@@ -235,7 +235,7 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Complete los siguientes datos para crear un usuario</h4>
+                    <h4 class="card-title">Complete los siguientes datos para crear un Inventario</h4>
                     <!-- <p class="card-description"> Basic form layout </p> -->
                     <br>
                     <?php echo form_open('');?>
