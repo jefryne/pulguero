@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2023 a las 20:50:41
+-- Tiempo de generación: 22-11-2023 a las 23:48:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -85,6 +85,8 @@ CREATE TABLE `history` (
 
 CREATE TABLE `inventory` (
   `id_inventory` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_category` int(10) UNSIGNED NOT NULL,
   `cost` int(10) UNSIGNED NOT NULL,
