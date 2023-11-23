@@ -264,7 +264,7 @@
                         echo form_label('Nombre', 'nombre');
 
                         $data = [
-                            'name'      => 'nombre',
+                            'name'      => 'name',
                             'value'     => '',
                             'placeholder' => 'Ingrese el nombre del articulo',
                             'type'     => 'text',
@@ -277,7 +277,7 @@
                         echo form_label('Descripcion', 'descripcion');
 
                         $data = [
-                            'name'      => 'descripcion',
+                            'name'      => 'description',
                             'value'     => '',
                             'placeholder' => 'Ingrese la descripcion del articulo',
                             'type'     => 'text',

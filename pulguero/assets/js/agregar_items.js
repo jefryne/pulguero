@@ -1,25 +1,26 @@
 
 let productos = [];
-
 $('.btnAgregar').on('click', function() {
     // Obtener la fila actual
+    let btnAgregar = $(this); // Obtener el botón actual
+    btnAgregar.prop('disabled', true); 
     let fila = $(this).closest('tr');
+    console.log(productos);
     
     // Obtener los datos de la fila
     let id_inventario = fila.find('.id_inventario').text(); // Reemplaza '.nombre' por la clase o identificador de la columna correspondiente
     let nombre_usuario = fila.find('.nombre_usuario').text(); 
     let nombre_articulo = fila.find('.nombre_articulo').text(); 
-    let descripcion_articulo = fila.find('.descripcion_articulo').text(); // Reemplaza '.precio' por la clase o identificador de la columna correspondiente
-    
+    let nombre_categoria = fila.find('.nombre_categoria').text(); // Reemplaza '.precio' por la clase o identificador de la columna correspondiente
+    let precio = fila.find('.precio').text(); // Reemplaza '.precio' por la clase o identificador de la columna correspondiente
+
     // Crear un objeto con los datos
     let producto = {
-        // price: nombre,
-        // cost: precio,
-        descripcion:descripcion_articulo,
-        nombre: nombre_articulo,
-        //id_category,
-        id_user: nombre_usuario,
-
+        id_inventario: id_inventario,
+        nombre_articulo: nombre_articulo,
+        nombre_categoria: nombre_categoria,
+        nombre_usuario: nombre_usuario,
+        precio: precio
     };
 
     // Agregar el producto al arreglo
@@ -30,7 +31,7 @@ $('.btnAgregar').on('click', function() {
 
 $('#botonEnviar').on('click', function() {
     $.ajax({
-        url: 'http://[::1]/pulguero/index.php/Inventarios/listadoInventario', // Reemplaza 'url_del_controlador' por la URL de tu controlador en CodeIgniter
+        url: 'http://[::1]/pulguero/index.php/Items/crearFactura', // Reemplaza 'url_del_controlador' por la URL de tu controlador en CodeIgniter
         method: 'POST',
         data: { productos: productos },
         success: function(response) {
@@ -50,15 +51,21 @@ $('#botonEnviar').on('click', function() {
 function actualizarTabla() {
     let cuerpoTabla = $('#cuerpoTabla');
 
-    // Limpiar la tabla antes de actualizarla para evitar duplicados
     cuerpoTabla.empty();
 
-    // Recorrer el arreglo y agregar cada elemento a la tabla
-    productos.forEach(function(producto) {
+    productos.forEach(function(producto, index) {
         let fila = `<tr>
-                        <td>${producto.nombre}</td>
-                        <td>${producto.descripcion}</td>
+                        <td>${producto.nombre_articulo}</td>
+                        <td>${producto.precio}</td>
+                        <td><button class="btnCancelar btn btn-danger" data-indice="${index}">Cancelar</button></td>
                     </tr>`;
         cuerpoTabla.append(fila);
+    });
+
+    $('.btnCancelar').on('click', function() {
+        let indice = $(this).data('indice');
+        productos.splice(indice, 1);
+        actualizarTabla();
+        $('.btnAgregar').prop('disabled', false); // Reactivar el botón Agregar
     });
 }

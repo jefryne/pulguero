@@ -227,7 +227,7 @@
         </nav>
         <!-- partial -->
  
-        <div class="card w-50">
+        <div class="card w-90">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -236,24 +236,24 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>logo</th>
-                    <th>id inventario</th>
-                    <th>provedor</th>
-                    <th>articulon</th>
-                    <th>descripcion</th>
-                    <th>agregar</th>
+                    <th>Id inventory</th>
+                    <th>Articulo</th>
+                    <th>Provedor</th>
+                    <th>Categoria</th>
+                    <th>precio</th>
+                    <th>Añadir</th>
+                  
                   </tr>
                   </thead>
                   <tbody>
                      <?php foreach ($inventarios as $key => $inventario): ?>
                           <tr>
-                            <td class="py-1">
-                              <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
-                            </td>
                             <td class="id_inventario"><?= $inventario->id_inventory;?></td>
+                            <td class="nombre_articulo"><?= $inventario->name;?></td>
                             <td class="nombre_usuario"><?= $inventario->nombre_usuario;?></td>
-                            <td class="nombre_articulo"><?= $inventario->nombre_articulo;?></td>
-                            <td class="descripcion_articulo"><?= $inventario->descripcion_articulo;?></td>
+                            <td class="nombre_categoria"><?= $inventario->nombre_categoria;?></td>
+                            <td class="precio"><?= $inventario->price;?></td>
+
                             <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
                  
                           </tr>
@@ -266,7 +266,7 @@
               
               <!-- /.card-body -->
         </div>
-        <div class="card w-50">
+        <div class="card w-10">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -333,7 +333,7 @@
     <script>
       $(function () {
         $("#example1").DataTable({
-          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "responsive": false, "lengthChange": false, "autoWidth": false,
           "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
@@ -343,7 +343,7 @@
           "ordering": true,
           "info": true,
           "autoWidth": false,
-          "responsive": true,
+          "responsive": false,
         });
       });
     </script>
