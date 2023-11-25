@@ -58,7 +58,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="http://[::1]/pulguero/index.php/Dashboard/dashboard">
+            <a class="nav-link" href="<?php echo site_url('Dashboard/dashboard'); ?>">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -75,11 +75,10 @@
             </a>
             <div class="collapse" id="usuarios_nav">
               <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/register"> Registrar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/listadoUsuarios">Lista usuarios</a></li>
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Usuarios/crear_cuenta"> Crear cuenta </a></li>
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Acumulados/listadoAcumulados"> Acumulados </a></li>
-
+              <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Usuarios/register'); ?>"> Registrar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Usuarios/listadoUsuarios'); ?>">Lista usuarios</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Usuarios/crear_cuenta'); ?>"> Crear cuenta </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Acumulados/listadoAcumulados'); ?>"> Acumulados </a></li>
               </ul>
             </div>
           </li>
@@ -94,9 +93,9 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/crearCategoria">Crear categoria</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Inventarios/crearCategoria'); ?>">Crear categoria</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Inventarios/listadoInventario'); ?>"> Listado Inventario </a></li>
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/inventario"> Crear inventario </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Inventarios/inventario'); ?>"> Crear inventario </a></li>
               </ul>
             </div>
           </li>

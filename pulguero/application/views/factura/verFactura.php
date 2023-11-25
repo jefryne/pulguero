@@ -269,9 +269,7 @@
                             <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
-                    </tbody>
-
-                
+                    </tbody>     
                 </table>
                 <button class="btn btn-primary">imprimir factura</button>
             </div>

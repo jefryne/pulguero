@@ -28,8 +28,8 @@ class Inventarios extends CI_Controller {
                     $data["id_user"] = $this->input->post("id_user");
                     $data["id_category"] = $this->input->post("id_category");
                     $data["cost"] = $this->input->post("cost");
-                    $data["name"] = $this->input->post("name");
-                    $data["description"] = $this->input->post("description");
+                    //$data["name"] = $this->input->post("name");
+                    //$data["description"] = $this->input->post("description");
                     $data["price"] = $this->input->post("price");
                     $this->Inventario->insert($data);
                     redirect(site_url('Inventarios/listadoInventario'));
