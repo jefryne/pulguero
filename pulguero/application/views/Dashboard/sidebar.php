@@ -95,7 +95,7 @@
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/crearCategoria">Crear categoria</a></li>
-                <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/listadoInventario"> Listado Inventario </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo site_url('Inventarios/listadoInventario'); ?>"> Listado Inventario </a></li>
                 <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Inventarios/inventario"> Crear inventario </a></li>
               </ul>
             </div>
