@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Factura extends CI_Model {
 
-    Public $table = 'account';
-    Public $table_id = 'id_account';
+    Public $table = 'invoice';
+    Public $table_id = 'id_invoice';
 
     Public function __construct(){
         parent::__construct();
@@ -22,6 +22,15 @@ class Factura extends CI_Model {
         $this->db->select();
         $this->db->from($this->table);
         $this->db->where("id_user", $user_id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function find($id){
+        $this->db->select();
+        $this->db->from($this->table);
+        $this->db->where($this->table_id, $id);
+
         $query = $this->db->get();
         return $query->row();
     }

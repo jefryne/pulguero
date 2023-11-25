@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="<?php echo base_url();?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>dist/css/adminlte.min.css">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.3.67/css/materialdesignicons.min.css" integrity="sha512-nRzny9w0V2Y1/APe+iEhKAwGAc+K8QYCw4vJek3zXhdn92HtKt226zHs9id8eUq+uYJKaH2gPyuLcaG/dE5c7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
@@ -226,70 +225,60 @@
           </div>
         </nav>
         <!-- partial -->
- 
-        <div class="card w-90">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>Id inventory</th>
-                    <th>Articulo</th>
-                    <th>Provedor</th>
-                    <th>Categoria</th>
-                    <th>precio</th>
-                    <th>Añadir</th>
-                  
-                  </tr>
-                  </thead>
-                  <tbody>
-                     <?php foreach ($inventarios as $key => $inventario): ?>
-                          <tr>
-                            <td class="id_inventario"><?= $inventario->id_inventory;?></td>
-                            <td class="nombre_articulo"><?= $inventario->name;?></td>
-                            <td class="nombre_usuario"><?= $inventario->nombre_usuario;?></td>
-                            <td class="nombre_categoria"><?= $inventario->nombre_categoria;?></td>
-                            <td class="precio"><?= $inventario->price;?></td>
+          <div class="container mt-4">
+        <h1>Detalles de la Factura</h1>
 
-                            <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
-                 
-                          </tr>
-                        <?php endforeach; ?>
-                  </tbody>
-                 
-                </table>
-                    
-              </div>
-              
-              <!-- /.card-body -->
+        <!-- Mostrar datos de la factura -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Datos de la Factura
+            </div>
+            <div class="card-body">
+                <p>ID de Factura: <?php echo $vdata->id_invoice; ?></p>
+                <p>Fecha: <?php echo $vdata->date; ?></p>
+                <p>Total: <?php echo $vdata->total; ?></p>
+                <!-- Agrega aquí otros detalles de la factura que desees mostrar -->
+            </div>
         </div>
-        <div class="card w-10">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-              <form id="formProductos" action="<?php echo base_url();?>index.php/Items/crearFactura" method="post">
-                <table id="tablaProductos" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>logo</th>
-                    <th>id inventario</th>
-                  </tr>
-                  </thead>
-                  <tbody id="cuerpoTabla">
-                  </tbody>
-                    
+
+        <!-- Mostrar ítems de la factura -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Ítems de la Factura
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID de Ítem</th>
+                            <th>Otro dato de Ítem</th>
+                            <!-- Agrega aquí encabezados para otros detalles de los ítems -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($items_factura as $item) : ?>
+                        <tr>
+                            <td><?php echo $item->id_item; ?></td>
+                            <?php if ($item->inventory !== null) : ?>
+                                <td><?php echo $item->inventory->name; ?></td>
+                                <td><?php echo $item->inventory->price; ?></td>
+                                <!-- Other properties -->
+                            <?php else : ?>
+                                <td colspan="2">Inventory data not available</td>
+                                <!-- Adjust colspan and display a message or handle this case as needed -->
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+
+                
                 </table>
-                <button type="sutmit" class="btn btn-primary"></button>
-                </form>
-              </div>
-              
-              <!-- /.card-body -->
-        </div>  
+                <button class="btn btn-primary">imprimir factura</button>
+            </div>
+ 
+        </div>
+    </div>
+
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
@@ -327,26 +316,5 @@
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/agregar_items_1.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url();?>dist/js/demo.js"></script>
-    <script>
-      $(function () {
-        $("#example1").DataTable({
-          "responsive": false, "lengthChange": false, "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": false,
-        });
-      });
-    </script>
   </body>
 </html>

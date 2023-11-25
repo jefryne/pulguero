@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class  Item extends CI_Model {
 
-    Public $table = 'accumulated';
-    Public $table_id = 'id_accumulated';
+    Public $table = 'item_invoice';
+    Public $table_id = 'id_item';
 
     Public function __construct(){
         parent::__construct();
@@ -49,6 +49,15 @@ class  Item extends CI_Model {
 
         $query = $this->db->get();
         return $query->row();
+    }
+
+    public function findByInvoice($invoice_id) {
+        $this->db->select();
+        $this->db->from($this->table);
+        $this->db->where('id_invoice', $invoice_id);
+    
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }
