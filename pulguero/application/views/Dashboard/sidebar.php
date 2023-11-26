@@ -110,7 +110,6 @@
             </a>
             <div class="collapse" id="historial_nav">
               <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/historial">Crear Historial</a></li>
               <li class="nav-item"> <a class="nav-link" href="http://[::1]/pulguero/index.php/Historiales/listadoHistorial">Lista Historial</a></li>
 
               </ul>

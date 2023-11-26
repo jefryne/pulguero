@@ -26,7 +26,7 @@ class  Inventario extends CI_Model {
     }
 
     public function obtenerDatosInventario(){
-        $this->db->select('i.id_inventory, u.user_name AS nombre_usuario, c.category_name AS nombre_categoria, i.cost, i.price, i.status_inventory, i.id_user, i.name');
+        $this->db->select('i.id_inventory, u.user_name AS nombre_usuario, c.category_name AS nombre_categoria, i.price, i.status_inventory, i.id_user, i.name');
         $this->db->from('inventory i');
         $this->db->join('users u', 'i.id_user = u.id_user');
         $this->db->join('category c', 'i.id_category = c.id_category');

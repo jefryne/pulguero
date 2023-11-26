@@ -284,7 +284,7 @@
                   </tbody>
                     
                 </table>
-                <button type="sutmit" class="btn btn-primary"></button>
+                <button type="sutmit" class="btn btn-primary">Facturar</button>
                 </form>
               </div>
               

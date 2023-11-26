@@ -286,18 +286,6 @@
                         echo form_input($data);
                         
                       ?>
-                      <?php
-                              echo form_label('Costo', 'costo');
-
-                              $data = [
-                                  'name'      => 'cost',
-                                  'value'     => '',
-                                  'placeholder' => 'Ingrese el costo',
-                                  'type'     => 'number',
-                                  'class'     => 'form-control input-lg mb-3', 
-                              ];
-                              echo form_input($data);
-                        ?>
                         <?php
                               echo form_label('Precio', 'precio');
 

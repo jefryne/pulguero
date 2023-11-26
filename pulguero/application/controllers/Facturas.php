@@ -19,13 +19,14 @@ class Facturas extends CI_Controller {
 
 
 
-    public function verFactura() {
+    public function verFactura($invoice_id = null) {
         if ($this->session->userdata('id_usuario')) {
             if ($this->session->userdata('rol') == 'Admin' || $this->session->userdata('rol') == 'SuperVisor') {
+                if($invoice_id == null){
                     $invoice_id = $this->session->userdata('id_factura');
-   
-                    $vdata["vdata"] = $this->Factura->find(36);
-                    $vdata["items_factura"] = $this->Item->findByInvoice(36); 
+                }
+                    $vdata["vdata"] = $this->Factura->find($invoice_id);
+                    $vdata["items_factura"] = $this->Item->findByInvoice($invoice_id); 
                 
                     foreach ($vdata["items_factura"] as $key => $item) {
                         // Obtener los datos del inventario para cada ítem de la factura

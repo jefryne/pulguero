@@ -27,7 +27,6 @@ class Inventarios extends CI_Controller {
                 if ($this->input->server("REQUEST_METHOD") == "POST") {
                     $data["id_user"] = $this->input->post("id_user");
                     $data["id_category"] = $this->input->post("id_category");
-                    $data["cost"] = $this->input->post("cost");
                     $data["name"] = $this->input->post("name");
                     $data["description"] = $this->input->post("description");
                     $data["price"] = $this->input->post("price");

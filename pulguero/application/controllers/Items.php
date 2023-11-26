@@ -15,7 +15,9 @@ class Items extends CI_Controller {
         $this->load->model('Cuenta');
         $this->load->model('Acumulado');
         $this->load->model('Factura');
+        $this->load->model('Historial');
         $this->load->model('Item');
+        $this->load->model('Inventario');
     }
 
     public function crearFactura() {
@@ -54,6 +56,19 @@ class Items extends CI_Controller {
                             $data_item["id_inventory"] = $producto['id_inventario'];
                             $data_item["id_invoice"] = $id_factura;
                             $this->Item->insert($data_item);
+                            $registro_inventario  = $this->Inventario->find($data_item["id_inventory"]);
+                            $pocentaje = $registro_inventario->price * 0.1;
+                            $accumulated_info = $this->Acumulado->findUser($registro_inventario->id_user);
+    
+                            $id_accumulated = $accumulated_info->id_accumulated;
+                            $cantidad_acumulada = $accumulated_info->quantity;
+    
+                            $cantidad_acumulada_actual["quantity"] =  ($pocentaje+$cantidad_acumulada);
+                            $this->Acumulado->update($id_accumulated , $cantidad_acumulada_actual);
+                            $data_historial["id_user"]= $this->session->userdata('id_usuario');
+                            $data_historial["id_invoice"]= $id_factura;
+                            $this->Historial->insert($data_historial);
+
                         } else {
                             echo "Error: Los datos del ítem no son válidos.";
                         }
