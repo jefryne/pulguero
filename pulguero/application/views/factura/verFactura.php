@@ -234,9 +234,11 @@
                 Datos de la Factura
             </div>
             <div class="card-body">
+                <p><?php echo $nombre_usuario?></p>
                 <p>ID de Factura: <?php echo $vdata->id_invoice; ?></p>
                 <p>Fecha: <?php echo $vdata->date; ?></p>
                 <p>Total: <?php echo $vdata->total; ?></p>
+                
                 <!-- Agrega aquí otros detalles de la factura que desees mostrar -->
             </div>
         </div>
@@ -271,9 +273,9 @@
                     <?php endforeach; ?>
                     </tbody>     
                 </table>
-                <button class="btn btn-primary">imprimir factura</button>
+                <a href="<?php echo site_url("Facturas/generarTiket")?>" target="_blank" class="btn btn-primary">imprimir factura</a>
+                <!-- <button class="btn btn-primary">imprimir factura</button> -->
             </div>
- 
         </div>
     </div>
 

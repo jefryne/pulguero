@@ -22,27 +22,42 @@ class Facturas extends CI_Controller {
     public function verFactura() {
         if ($this->session->userdata('id_usuario')) {
             if ($this->session->userdata('rol') == 'Admin' || $this->session->userdata('rol') == 'SuperVisor') {
-                    $invoice_id = $this->session->userdata('id_factura');
-   
-                    $vdata["vdata"] = $this->Factura->find(36);
-                    $vdata["items_factura"] = $this->Item->findByInvoice(36); 
-                
-                    foreach ($vdata["items_factura"] as $key => $item) {
-                        // Obtener los datos del inventario para cada ítem de la factura
-                        $inventory_data = $this->Inventario->find($item->id_inventory);
-                        // Agregar los datos del inventario al elemento de la factura
-                        $vdata["items_factura"][$key]->inventory = $inventory_data;
-    
-                    }
-                
-                    $vdata["nombre_usuario"] = $this->session->userdata('nombres');
-                    $vdata["rol_usuario"] = $this->session->userdata('rol');
-                    $this->load->view('factura/verFactura', $vdata);
-        
+                $invoice_id = $this->session->userdata('id_factura');
+
+                $vdata["vdata"] = $this->Factura->find($invoice_id);
+                $vdata["items_factura"] = $this->Item->findByInvoice($invoice_id); 
+            
+                foreach ($vdata["items_factura"] as $key => $item) {
+                    // Obtener los datos del inventario para cada ítem de la factura
+                    $inventory_data = $this->Inventario->find($item->id_inventory);
+                    // Agregar los datos del inventario al elemento de la factura
+                    $vdata["items_factura"][$key]->inventory = $inventory_data;
+                }
+                $vdata["nombre_usuario"] = $this->session->userdata('nombres');
+                $vdata["rol_usuario"] = $this->session->userdata('rol');
+                $this->load->view('factura/verFactura', $vdata);
             }
         }
-  
     }
-    
+
+
+    public function generarTiket(){
+        if($this->session->userdata('id_usuario')){
+            if($this->session->userdata('rol') == 'Admin' || $this->session->userdata('rol') == 'SuperVisor'){
+                $invoice_id = $this->session->userdata('id_factura');
+                $vdata["vdata"] = $this->Factura->find($invoice_id);
+                $vdata["items_factura"] = $this->Item->findByInvoice($invoice_id); 
+                foreach ($vdata["items_factura"] as $key => $item) {
+                    // Obtener los datos del inventario para cada ítem de la factura
+                    $inventory_data = $this->Inventario->find($item->id_inventory);
+                    // Agregar los datos del inventario al elemento de la factura
+                    $vdata["items_factura"][$key]->inventory = $inventory_data;
+                }
+                $vdata["nombre_verdedo"] = $this->session->userdata('nombres');
+                $this->load->view('factura/ticket', $vdata);
+            }
+        }
+        //$this->load->view('factura/ticket');
+    }
 }
 ?>
