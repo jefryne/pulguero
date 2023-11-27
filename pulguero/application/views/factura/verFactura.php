@@ -273,7 +273,7 @@
                     <?php endforeach; ?>
                     </tbody>     
                 </table>
-                <a href="<?php echo site_url("Facturas/generarTiket")?>" target="_blank" class="btn btn-primary">imprimir factura</a>
+                <a href="<?php echo site_url("Facturas/generarTiket")?>/<?php echo $vdata->id_invoice;?>" target="_blank" class="btn btn-primary">imprimir factura</a>
                 <!-- <button class="btn btn-primary">imprimir factura</button> -->
             </div>
         </div>
