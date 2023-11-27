@@ -181,32 +181,7 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-          <div class="row">
-              <div class="col-12 grid-margin stretch-card">
-                <div class="card corona-gradient-card">
-                  <div class="card-body py-0 px-0 px-sm-3">
-                    <div class="row align-items-center" style="margin: auto; text-align: center;">
-                      <!-- <div class="col-4 col-sm-3 col-xl-2">
-                        <img src="../../assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
-                      </div> -->
-                      <div class="col-lg-12 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;font-size: 30px;">
-                        
-                        <h4 class="mb-1 mb-sm-0">BIENVENID@  <br>  <?php echo $nombre_usuario; ?> </h4>
-                      </div>
-                      <div class="col-lg-12 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;font-size: 30px;">
-                        
-                        <p class="mb-0 font-weight-normal d-none d-sm-block" style="font-size: 20px;">Al pulguero baby!</p>
-                      </div>
-                    </div>
-                    <div class="col-4 col-sm-3 col-xl-2" style="margin: auto; text-align: center;">
-                        <img src="../../assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="" >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+          <div class="content-wrapper">        
             <div class="row">
               <div class="col-lg-6 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;">
                 <div class="card">

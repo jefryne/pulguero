@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.3.67/css/materialdesignicons.min.css" integrity="sha512-nRzny9w0V2Y1/APe+iEhKAwGAc+K8QYCw4vJek3zXhdn92HtKt226zHs9id8eUq+uYJKaH2gPyuLcaG/dE5c7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/css/vendor.bundle.base.css">
+
+    
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -227,7 +229,7 @@
         </nav>
         <!-- partial -->
  
-        <div class="card w-90">
+        <div class="card w-100">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -237,7 +239,7 @@
                   <thead>
                   <tr>
                     <th>Id inventory</th>
-                    <th>Articulo</th>
+                    <!-- <th>Articulo</th> -->
                     <th>Provedor</th>
                     <th>Categoria</th>
                     <th>precio</th>
@@ -249,13 +251,11 @@
                      <?php foreach ($inventarios as $key => $inventario): ?>
                           <tr>
                             <td class="id_inventario"><?= $inventario->id_inventory;?></td>
-                            <td class="nombre_articulo"><?= $inventario->name;?></td>
+                            <!-- <td class="nombre_articulo"><?= $inventario->name;?></td> -->
                             <td class="nombre_usuario"><?= $inventario->nombre_usuario;?></td>
                             <td class="nombre_categoria"><?= $inventario->nombre_categoria;?></td>
                             <td class="precio"><?= $inventario->price;?></td>
-
                             <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
-                 
                           </tr>
                         <?php endforeach; ?>
                   </tbody>
@@ -266,7 +266,7 @@
               
               <!-- /.card-body -->
         </div>
-        <div class="card w-10">
+        <div class="card w-50">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div>
@@ -329,6 +329,7 @@
     <script src="<?php echo base_url();?>assets/js/agregar_items_1.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>dist/js/demo.js"></script>
     <script>

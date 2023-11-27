@@ -1,4 +1,5 @@
 let productos = [];
+actualizarTabla();
 
 // Función para agregar un producto a la lista
 $('.btnAgregar').on('click', function() {
@@ -28,16 +29,22 @@ $('.btnAgregar').on('click', function() {
 function actualizarTabla() {
     let cuerpoTabla = $('#cuerpoTabla');
     cuerpoTabla.empty();
+    console.log("producto"+ productos.length);
 
-    productos.forEach(function(producto, index) {
-        let fila = `<tr>
-                        <td>${producto.nombre_articulo}</td>
-                        <td>${producto.precio}</td>
-                        <td><button class="btnCancelar btn btn-danger" data-indice="${index}">Cancelar</button></td>
-                    </tr>`;
-        cuerpoTabla.append(fila);
-    });
-
+    if (productos.length === 0) {
+        $('.btn-siguiente-habilita').prop('disabled', true);
+    }else{
+        productos.forEach(function(producto, index) {
+            let fila = `<tr>
+                            <td>${producto.nombre_articulo}</td>
+                            <td>${producto.precio}</td>
+                            <td><button class="btnCancelar btn btn-danger" data-indice="${index}">Cancelar</button></td>
+                        </tr>`;
+            cuerpoTabla.append(fila);
+        });
+        $('.btn-siguiente-habilita').prop('disabled', false);
+    }
+    
     $('.btnCancelar').on('click', function() {
         let indice = $(this).data('indice');
         productos.splice(indice, 1);

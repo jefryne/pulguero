@@ -39,7 +39,6 @@ class  Inventario extends CI_Model {
         $this->db->select();
         $this->db->from($this->table);
         $this->db->where($this->table_id, $id);
-
         $query = $this->db->get();
         return $query->row();
     }
