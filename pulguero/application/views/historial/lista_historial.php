@@ -259,7 +259,7 @@
                             <td><?= $historial->id_user ;?></td>
                             <td><?= $historial->id_client;?></td>
                             <td><?= $historial->date_history;?></td>
-                            <td><?= $historial->transaction_status;?></td>
+                            <td><a href="http://[::1]/pulguero/index.php/Facturas/verFactura/<?php echo $historial->id_invoice;?>" class="btn btn-primary">Ver</a></td>
                           </tr>
                         <?php endforeach; ?>
                         </tbody>

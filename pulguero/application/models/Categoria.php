@@ -26,4 +26,15 @@ class  Categoria extends CI_Model {
         return $query->result();
     }
 
+    public function topCategory(){
+        $query = "SELECT c.category_name, COUNT(ii.id_item) AS total_sold
+                  FROM item_invoice ii
+                  INNER JOIN inventory inv ON ii.id_inventory = inv.id_inventory
+                  INNER JOIN category c ON inv.id_category = c.id_category
+                  GROUP BY c.category_name
+                  ORDER BY total_sold DESC
+                  LIMIT 3";
+        return $this->db->query($query)->result_array();
+    }
+
 }

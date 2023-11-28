@@ -62,73 +62,107 @@
       });
     }
     if ($("#transaction-history").length) {
-      var areaData = {
-        labels: ["Vestidos", "Pañaleras","Medias"],
-        datasets: [{
-            data: [236, 593, 120],
-            backgroundColor: [
-              "#111111","#00d25b","#ffab00"
-            ]
+      console.log("se llego");
+      $.ajax({
+        url: 'http://localhost/pulguero/pulguero/index.php/Dashboard/getCategory', // La URL para la petición se debe cambiar en cada navegador hasta definir el dominio
+        type: "GET",
+        dataType: "json",
+        success: function(data){
+          console.log(data);
+          var categoryNames = data.map(item => item.category_name);
+          var totalSold = data.map(item => item.total_sold);
+          console.log(categoryNames);
+          // Inserción de categorías en el dashboard en el chart
+          var areaData = {
+            labels: categoryNames,
+            datasets: [{
+              data: totalSold,
+              backgroundColor: [
+                "#111111","#00d25b","#ffab00"
+              ]
+            }]
+          };
+          var areaOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            segmentShowStroke: false,
+            cutoutPercentage: 70,
+            elements: {
+              arc: {
+                  borderWidth: 0
+              }
+            },      
+            legend: {
+              display: false
+            },
+            tooltips: {
+              enabled: true
+            }
           }
-        ]
-      };
-      var areaOptions = {
-        responsive: true,
-        maintainAspectRatio: true,
-        segmentShowStroke: false,
-        cutoutPercentage: 70,
-        elements: {
-          arc: {
-              borderWidth: 0
+          var transactionhistoryChartPlugins = {
+            beforeDraw: function(chart) {
+              var width = chart.chart.width,
+                  height = chart.chart.height,
+                  ctx = chart.chart.ctx;
+          
+              ctx.restore();
+              var fontSize = 1;
+              ctx.font = fontSize + "rem sans-serif";
+              ctx.textAlign = 'left';
+              ctx.textBaseline = "middle";
+              ctx.fillStyle = "#ffffff";
+          
+              var text = "Estadisticas de ventas", 
+                  textX = Math.round((width - ctx.measureText(text).width) / 2),
+                  textY = height / 2.4;
+          
+              ctx.fillText(text, textX, textY);
+    
+              ctx.restore();
+              var fontSize = 0.75;
+              ctx.font = fontSize + "rem sans-serif";
+              ctx.textAlign = 'left';
+              ctx.textBaseline = "middle";
+              ctx.fillStyle = "#6c7293";
+    
+              var texts = "basadas en las categorias", 
+                  textsX = Math.round((width - ctx.measureText(text).width) / 2.1),
+                  textsY = height / 2.1;
+          
+              ctx.fillText(texts, textsX, textsY);
+              ctx.save();
+            }
           }
-        },      
-        legend: {
-          display: false
+          var transactionhistoryChartCanvas = $("#transaction-history").get(0).getContext("2d");
+          var transactionhistoryChart = new Chart(transactionhistoryChartCanvas, {
+            type: 'doughnut',
+            data: areaData,
+            options: areaOptions,
+            plugins: transactionhistoryChartPlugins
+          });
+
+          // Inserción de categorías en el dashboard en texto
+          var container = $("#categoryContainer");
+
+          container.empty();
+          console.log("Se llegó a la inserción de categorías");
+          console.log(categoryNames+" si aja"+totalSold);
+          categoryNames.forEach(function(categoryNames, index){
+            console.log("se llego aca felizx2");
+            var categoryDiv = $('<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">' +
+                '<div class="text-md-center text-xl-left">' +
+                '<h6 class="mb-1">' + categoryNames + '</h6>' +
+                '</div>' +
+                '<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">' +
+                '<h6 class="font-weight-bold mb-0">' + totalSold[index] + '</h6>' +
+                '</div>' +
+                '</div>');
+            container.append(categoryDiv);
+          });
         },
-        tooltips: {
-          enabled: true
+        error: function(xhr, status, error) {
+          console.error(error);
         }
-      }
-      var transactionhistoryChartPlugins = {
-        beforeDraw: function(chart) {
-          var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
-      
-          ctx.restore();
-          var fontSize = 1;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#ffffff";
-      
-          var text = "$949", 
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2.4;
-      
-          ctx.fillText(text, textX, textY);
-
-          ctx.restore();
-          var fontSize = 0.75;
-          ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#6c7293";
-
-          var texts = "Total", 
-              textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-              textsY = height / 1.7;
-      
-          ctx.fillText(texts, textsX, textsY);
-          ctx.save();
-        }
-      }
-      var transactionhistoryChartCanvas = $("#transaction-history").get(0).getContext("2d");
-      var transactionhistoryChart = new Chart(transactionhistoryChartCanvas, {
-        type: 'doughnut',
-        data: areaData,
-        options: areaOptions,
-        plugins: transactionhistoryChartPlugins
       });
     }
     if ($("#transaction-history-arabic").length) {
