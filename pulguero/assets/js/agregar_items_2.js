@@ -1,16 +1,20 @@
 let productos = [];
-actualizarTabla();
-
+let botones_cancelar = [];
 // Función para agregar un producto a la lista
 $('.btnAgregar').on('click', function() {
     // Obtener los datos de la fila
+    let btnAgregar = $(this); // Obtener el botón actual
+    btnAgregar.prop('disabled', true); 
+   let indiceBotonAgregar = $('.btnAgregar').index(this);
+   console.log(indiceBotonAgregar);
     let fila = $(this).closest('tr');
     let id_inventario = fila.find('.id_inventario').text();
     let nombre_usuario = fila.find('.nombre_usuario').text();
     let nombre_articulo = fila.find('.nombre_articulo').text();
     let nombre_categoria = fila.find('.nombre_categoria').text();
     let precio = fila.find('.precio').text();
-
+    botones_cancelar.push(indiceBotonAgregar)
+    console.log(botones_cancelar);
     // Crear un objeto con los datos
     let producto = {
         id_inventario: id_inventario,
@@ -22,7 +26,7 @@ $('.btnAgregar').on('click', function() {
 
     // Agregar el producto al arreglo
     productos.push(producto);
-    actualizarTabla();
+    actualizarTabla(indiceBotonAgregar );
 });
 
 // Función para actualizar la tabla con los productos
@@ -38,7 +42,7 @@ function actualizarTabla() {
             let fila = `<tr>
                             <td>${producto.nombre_articulo}</td>
                             <td>${producto.precio}</td>
-                            <td><button class="btnCancelar btn btn-danger" data-indice="${index}">Cancelar</button></td>
+                            <td><button class="btnCancelar btn btn-danger" data-indice="${index}" data-otro-valor="${botones_cancelar[index]}">Cancelar</button></td>
                         </tr>`;
             cuerpoTabla.append(fila);
         });
@@ -49,8 +53,13 @@ function actualizarTabla() {
         let indice = $(this).data('indice');
         productos.splice(indice, 1);
         actualizarTabla();
-        $('.btnAgregar').prop('disabled', false);
+        let indiceBotonAgregar_1 = $(this).data('otro-valor'); // Obtener el valor de data-otro-valor
+        let botonesAgregar = document.querySelectorAll('.btnAgregar');
+        console.log(botonesAgregar[indiceBotonAgregar_1]);
+        botonesAgregar[botones_cancelar[indice]].disabled = false; 
+        botones_cancelar.splice(indice, 1);
     });
+    
 }
 
 $('#formProductos').on('submit', function(event) {

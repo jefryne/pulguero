@@ -241,17 +241,17 @@
                     <th>Id inventory</th>
                     <!-- <th>Articulo</th> -->
                     <th>Provedor</th>
+                    <th>nombre producto</th>
                     <th>Categoria</th>
                     <th>precio</th>
                     <th>Añadir</th>
-                  
                   </tr>
                   </thead>
                   <tbody>
                      <?php foreach ($inventarios as $key => $inventario): ?>
                           <tr>
                             <td class="id_inventario"><?= $inventario->id_inventory;?></td>
-                            <!-- <td class="nombre_articulo"><?= $inventario->name;?></td> -->
+                            <td class="nombre_articulo"><?= $inventario->name;?></td>
                             <td class="nombre_usuario"><?= $inventario->nombre_usuario;?></td>
                             <td class="nombre_categoria"><?= $inventario->nombre_categoria;?></td>
                             <td class="precio"><?= $inventario->price;?></td>
@@ -276,8 +276,9 @@
                 <table id="tablaProductos" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>logo</th>
-                    <th>id inventario</th>
+                    <th>nombre articulo</th>
+                    <th>preio</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody id="cuerpoTabla">
@@ -298,10 +299,6 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="<?php echo base_url();?>assets/js/off-canvas.js"></script>
     <script src="<?php echo base_url();?>assets/js/hoverable-collapse.js"></script>
     <script src="<?php echo base_url();?>assets/js/misc.js"></script>
@@ -326,7 +323,7 @@
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="<?php echo base_url();?>assets/js/agregar_items_1.js"></script>
+    <script src="<?php echo base_url();?>assets/js/agregar_items_2.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 

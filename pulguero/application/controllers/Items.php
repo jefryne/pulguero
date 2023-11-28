@@ -57,6 +57,8 @@ class Items extends CI_Controller {
                             $data_item["id_invoice"] = $id_factura;
                             $this->Item->insert($data_item);
                             $registro_inventario  = $this->Inventario->find($data_item["id_inventory"]);
+                            $estado["status_inventory"] = 0;
+                            $this->Inventario->update($data_item["id_inventory"], $estado);
                             $pocentaje = $registro_inventario->price * 0.1;
                             $accumulated_info = $this->Acumulado->findUser($registro_inventario->id_user);
     
@@ -65,14 +67,15 @@ class Items extends CI_Controller {
     
                             $cantidad_acumulada_actual["quantity"] =  ($pocentaje+$cantidad_acumulada);
                             $this->Acumulado->update($id_accumulated , $cantidad_acumulada_actual);
-                            $data_historial["id_user"]= $this->session->userdata('id_usuario');
-                            $data_historial["id_invoice"]= $id_factura;
-                            $this->Historial->insert($data_historial);
+                       
 
                         } else {
                             echo "Error: Los datos del ítem no son válidos.";
                         }
                     }
+                    $data_historial["id_user"]= $this->session->userdata('id_usuario');
+                    $data_historial["id_invoice"]= $id_factura;
+                    $this->Historial->insert($data_historial);
                     $this->session->set_userdata('id_factura', $id_factura);
                     redirect('Facturas/verFactura');
                 } else {

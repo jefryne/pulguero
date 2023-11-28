@@ -258,7 +258,7 @@
                         echo form_dropdown('id_category', $options, 'large', 'class="form-control mb-3"');
                       ?>
 
-                     <!--  <?php
+                     <?php
                         echo form_label('Nombre', 'nombre');
 
                         $data = [
@@ -269,7 +269,7 @@
                             'class'     => 'form-control input-lg mb-3', 
                         ];
                         echo form_input($data);
-                      ?>  -->
+                      ?>
 
                       <?php
                         echo form_label('Descripcion', 'descripcion');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2023 a las 22:39:50
+-- Tiempo de generación: 28-11-2023 a las 03:44:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -57,8 +57,8 @@ CREATE TABLE `accumulated` (
 --
 
 INSERT INTO `accumulated` (`id_accumulated`, `id_user`, `quantity`) VALUES
-(1, 2, 120),
-(2, 3, 60);
+(1, 2, 540),
+(2, 3, 320);
 
 -- --------------------------------------------------------
 
@@ -98,10 +98,8 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`id_history`, `id_user`, `date_history`, `id_invoice`) VALUES
-(1, 1, '2023-11-26 21:29:12', 61),
-(2, 1, '2023-11-26 21:29:12', 61),
-(3, 1, '2023-11-26 21:32:34', 62),
-(4, 1, '2023-11-26 21:32:34', 62);
+(28, 1, '2023-11-28 02:38:11', 74),
+(29, 1, '2023-11-28 02:43:28', 75);
 
 -- --------------------------------------------------------
 
@@ -124,9 +122,11 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id_inventory`, `name`, `description`, `id_user`, `id_category`, `price`, `status_inventory`) VALUES
-(1, 'caramelo', 'rico', 2, 1, 200, 1),
-(2, 'camiseta', 'roja', 2, 2, 200, 1),
-(3, 'iphone', 'nuevo', 3, 3, 200, 1);
+(1, 'caramelo', 'rico', 2, 1, 200, 0),
+(2, 'camiseta', 'roja', 2, 2, 200, 0),
+(3, 'iphone', 'nuevo', 3, 3, 200, 0),
+(4, 'banana', 'rico', 2, 1, 1000, 0),
+(5, 'pantalon', 'nuevo', 3, 2, 600, 0);
 
 -- --------------------------------------------------------
 
@@ -145,23 +145,8 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`id_invoice`, `date`, `total`) VALUES
-(46, '2023-11-26 20:45:43', 400.00),
-(47, '2023-11-26 20:45:58', 400.00),
-(48, '2023-11-26 20:50:34', 400.00),
-(49, '2023-11-26 20:51:22', 400.00),
-(50, '2023-11-26 20:51:57', 400.00),
-(51, '2023-11-26 20:52:50', 400.00),
-(52, '2023-11-26 20:53:15', 400.00),
-(53, '2023-11-26 20:54:43', 400.00),
-(54, '2023-11-26 20:55:02', 400.00),
-(55, '2023-11-26 20:55:07', 400.00),
-(56, '2023-11-26 20:56:05', 400.00),
-(57, '2023-11-26 20:56:29', 400.00),
-(58, '2023-11-26 20:57:47', 400.00),
-(59, '2023-11-26 20:59:26', 400.00),
-(60, '2023-11-26 21:27:51', 400.00),
-(61, '2023-11-26 21:29:12', 400.00),
-(62, '2023-11-26 21:32:34', 400.00);
+(74, '2023-11-28 02:38:11', 600.00),
+(75, '2023-11-28 02:43:28', 1600.00);
 
 -- --------------------------------------------------------
 
@@ -180,38 +165,11 @@ CREATE TABLE `item_invoice` (
 --
 
 INSERT INTO `item_invoice` (`id_item`, `id_invoice`, `id_inventory`) VALUES
-(65, 46, 1),
-(66, 46, 2),
-(67, 47, 1),
-(68, 47, 2),
-(69, 48, 1),
-(70, 48, 2),
-(71, 49, 1),
-(72, 50, 1),
-(73, 50, 2),
-(74, 51, 1),
-(75, 51, 2),
-(76, 52, 1),
-(77, 52, 2),
-(78, 53, 1),
-(79, 53, 2),
-(80, 54, 1),
-(81, 54, 2),
-(82, 55, 1),
-(83, 55, 2),
-(84, 56, 1),
-(85, 56, 2),
-(86, 57, 1),
-(87, 57, 2),
-(88, 58, 1),
-(89, 58, 2),
-(90, 59, 2),
-(91, 59, 3),
-(92, 60, 2),
-(93, 61, 2),
-(94, 61, 3),
-(95, 62, 2),
-(96, 62, 3);
+(120, 74, 1),
+(121, 74, 2),
+(122, 74, 3),
+(123, 75, 4),
+(124, 75, 5);
 
 -- --------------------------------------------------------
 
@@ -346,25 +304,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT de la tabla `history`
 --
 ALTER TABLE `history`
-  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id_invoice` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_invoice` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `item_invoice`
 --
 ALTER TABLE `item_invoice`
-  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT de la tabla `liquidation`

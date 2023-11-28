@@ -30,10 +30,13 @@ class  Inventario extends CI_Model {
         $this->db->from('inventory i');
         $this->db->join('users u', 'i.id_user = u.id_user');
         $this->db->join('category c', 'i.id_category = c.id_category');
+        $this->db->where('i.status_inventory', 1); // Filtro por estado igual a 1
         $this->db->order_by('i.id_inventory', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
+    
+
 
     public function find($id){
         $this->db->select();
@@ -41,5 +44,10 @@ class  Inventario extends CI_Model {
         $this->db->where($this->table_id, $id);
         $query = $this->db->get();
         return $query->row();
+    }
+
+    public function update($id, $data){
+        $this->db->where($this->table_id, $id);
+        $this->db->update($this->table, $data);
     }
 }
