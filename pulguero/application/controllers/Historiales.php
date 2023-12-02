@@ -25,7 +25,7 @@ class Historiales extends CI_Controller {
         if ($this->session->userdata('id_usuario')) {
             if($this->session->userdata('rol') == 'Admin' or $this->session->userdata('rol') == 'SuperVisor')
             {
-                $vdata["historiales"] = $this->Historial->findAll();
+                $vdata["historiales"] = $this->Historial->findAllWithUserName();
                 $vdata["nombre_usuario"] = $this->session->userdata('nombres');
                 $vdata["rol_usuario"] = $this->session->userdata('rol');
                 $this->load->view('historial/lista_historial', $vdata);

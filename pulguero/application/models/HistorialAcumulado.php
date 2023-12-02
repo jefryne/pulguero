@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class  Acumulado extends CI_Model {
+class  HistorialAcumulado extends CI_Model {
 
-    Public $table = 'accumulated';
-    Public $table_id = 'id_accumulated';
+    Public $table = 'withdrawal_history';
+    Public $table_id = 'id_withdraw';
 
     Public function __construct(){
         parent::__construct();
@@ -25,14 +25,16 @@ class  Acumulado extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    public function findAllWithUserName(){
-        $this->db->select('accumulated.*, users.user_name');
-        $this->db->from('accumulated');
-        $this->db->join('users', 'users.id_user = accumulated.id_user');
+
+    public function findAllWithdrawalsWithUserName(){
+        $this->db->select('withdrawal_history.*, users.user_name');
+        $this->db->from('withdrawal_history');
+        $this->db->join('users', 'users.id_user = withdrawal_history.id_user');
     
         $query = $this->db->get();
         return $query->result();
     }
+    
 
     public function update($id, $data){
         $this->db->where($this->table_id, $id);

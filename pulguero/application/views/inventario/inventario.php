@@ -206,7 +206,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p id="cerrar_seccion" class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -345,6 +345,7 @@
     <script src="<?php echo base_url();?>assets/js/file-upload.js"></script>
     <script src="<?php echo base_url();?>assets/js/typeahead.js"></script>
     <script src="<?php echo base_url();?>assets/js/select2.js"></script>
+    <script src="<?php echo base_url();?>assets/js/otros_2.js"></script>
     <!-- End custom js for this page -->
   </body>
 </html>

@@ -49,9 +49,6 @@ class Usuarios extends CI_Controller {
         }
     }
 
-    public function forms(){
-        $this->load->view('usuario/registrar_actualizar');
-    }
 
 
 	public function register($id_usuario = null){

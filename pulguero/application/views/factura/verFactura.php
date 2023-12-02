@@ -211,7 +211,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p id="cerrar_seccion" class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -316,5 +316,6 @@
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/agregar_items_1.js"></script>
+    <script src="<?php echo base_url();?>assets/js/otros_2.js"></script>
   </body>
 </html>

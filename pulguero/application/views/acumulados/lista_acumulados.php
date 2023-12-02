@@ -231,21 +231,29 @@
                             <th>Id</th>
                             <th>Id Usuario</th>
                             <th>Cantidad Acumulada</th>
-                 
+                            <th>Progreso Acumulado</th>
                           </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($acumulados as $key => $acumulado): ?>
                           <tr>
-                            <td class="py-1">
-                              <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
-                            </td>
-                            <td><?= $acumulado->id_accumulated;?></td>
-                            <td><?= $acumulado->id_user ;?></td>
-                            <td><?= $acumulado->quantity ;?></td>
-
+                              <td class="py-1">
+                                  <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
+                              </td>
+                              <td><?= $acumulado->id_accumulated;?></td>
+                              <td><?= $acumulado->user_name ;?></td>
+                              <td><?= $acumulado->quantity ;?></td>
+                              <td>
+                                  <?php
+                                      $progressPercentage = ($acumulado->quantity / 500000) * 100;
+                                  ?>
+                                  <div class="progress">
+                                      <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progressPercentage ?>%" aria-valuenow="<?= $progressPercentage ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                              </td>
+                              <td><a class="badge badge-primary" href="<?php echo site_url('Acumulados/retirarAcumulado/'); ?><?php echo $acumulado->id_accumulated;?>">Retirar Acumulado</a></td>
                           </tr>
-                        <?php endforeach; ?>
+                      <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>

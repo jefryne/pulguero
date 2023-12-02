@@ -12,6 +12,17 @@ class Historial extends CI_Model {
         $this->load->database();
     }
 
+
+    public function findAllWithUserName(){
+        $this->db->select('history.*, users.user_name');
+        $this->db->from('history');
+        $this->db->join('users', 'users.id_user = history.id_user');
+        
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+
     public function findAll(){
         $this->db->select();
         $this->db->from($this->table);
@@ -115,4 +126,7 @@ class Historial extends CI_Model {
         $query = $this->db->get();
         return $query->row();
     }
+
+
+
 }

@@ -204,7 +204,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p id="cerrar_seccion" class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -242,10 +242,8 @@
                             <!-- <th> id </th> -->
                             <th>Id</th>
                             <th>Id Inventario</th>
-                            <th>Id Usuario</th>
-                            <th>Id Cliente </th>
+                            <th>Empleado</th>
                             <th>Fecha</th>
-                            <th>Estado</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -256,7 +254,7 @@
                             </td>
                             <td><?= $historial->id_history;?></td>
                             <td><?= $historial->id_invoice;?></td>
-                            <td><?= $historial->id_user ;?></td>
+                            <td><?= $historial->user_name ;?></td>
                             <td><?= $historial->date_history;?></td>
                             <td><a href="http://[::1]/pulguero/index.php/Facturas/verFactura/<?php echo $historial->id_invoice;?>" class="btn btn-primary">Ver</a></td>
                           </tr>
@@ -298,6 +296,7 @@
     <script src="<?php echo base_url();?>assets/js/misc.js"></script>
     <script src="<?php echo base_url();?>assets/js/settings.js"></script>
     <script src="<?php echo base_url();?>assets/js/todolist.js"></script>
+    <script src="<?php echo base_url();?>assets/js/otros_2.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->

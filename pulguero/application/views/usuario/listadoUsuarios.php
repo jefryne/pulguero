@@ -204,7 +204,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p id="cerrar_seccion" class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -226,16 +226,16 @@
                       <table class="table table-striped mt-5">
                         <thead>
                         <tr>
-                            <th> <a class="badge badge-primary" href="http://[::1]/pulguero/index.php/Usuarios/listadoUsuarios">todos</a> </th>
-                            <th> <a class="badge badge-primary" href="http://[::1]/pulguero/index.php/Usuarios/listadoUsuarios/1">Activos</a>  </th>
-                            <th> <a class="badge badge-primary" href="http://[::1]/pulguero/index.php/Usuarios/listadoUsuarios/0">Inactivos</a> </th>
+                            <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios'); ?>">todos</a> </th>
+                            <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios/1'); ?>">Activos</a>  </th>
+                            <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios/0'); ?>">Inactivos</a> </th>
                           </tr>
                           <tr>
                             <th> logo </th>
                             <th> id </th>
                             <th> documento </th>
                             <th> nombre </th>
-                            <th> acumulado </th>
+                        
                             <th> telefono </th>
                           </tr>
                         </thead>
@@ -248,14 +248,9 @@
                             <td><?= $usuario->id_user;?></td>
                             <td><?= $usuario->document_number;?></td>
                             <td><?= $usuario->user_name;?></td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
                             <td><?= $usuario->cellphone;?></td>
-                            <td><a class="badge badge-primary" href="http://[::1]/pulguero/index.php/Usuarios/register/<?php echo $usuario->id_user;?>">Editar</a></td>
-                            <td><a class="badge badge-danger" href="http://[::1]/pulguero/index.php/Usuarios/borrar/<?php echo $usuario->id_user;?>">Eliminar</a></td>
+                            <td><a class="badge badge-primary" href="<?php echo site_url('Usuarios/register/'); ?><?php echo $usuario->id_user;?>">Editar</a></td>
+                            <td><a class="badge badge-danger" href="<?php echo site_url('Usuarios/borrar/'); ?><?php echo $usuario->id_user;?>">Eliminar</a></td>
                           </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -292,6 +287,7 @@
     <script src="<?php echo base_url();?>assets/js/misc.js"></script>
     <script src="<?php echo base_url();?>assets/js/settings.js"></script>
     <script src="<?php echo base_url();?>assets/js/todolist.js"></script>
+    <script src="<?php echo base_url();?>assets/js/otros_2.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->

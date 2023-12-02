@@ -18,6 +18,7 @@ class Items extends CI_Controller {
         $this->load->model('Historial');
         $this->load->model('Item');
         $this->load->model('Inventario');
+        $this->load->library('email');
     }
 
     public function crearFactura() {
@@ -61,11 +62,23 @@ class Items extends CI_Controller {
                             $this->Inventario->update($data_item["id_inventory"], $estado);
                             $pocentaje = $registro_inventario->price * 0.1;
                             $accumulated_info = $this->Acumulado->findUser($registro_inventario->id_user);
-    
+                            
                             $id_accumulated = $accumulated_info->id_accumulated;
                             $cantidad_acumulada = $accumulated_info->quantity;
     
                             $cantidad_acumulada_actual["quantity"] =  ($pocentaje+$cantidad_acumulada);
+                            $info_usuario_acumulado = $this->Usuario->find($registro_inventario->id_user);
+                            if($cantidad_acumulada_actual["quantity"] > 500000){
+                                $this->email->from('jefryne88@gmail.com', 'Jeffry Nuñez');
+                                $this->email->to($info_usuario_acumulado->email);
+                                $this->email->subject('Retirar Acumulado');
+                                $this->email->message('Hola '.$info_usuario_acumulado->user_name.' Su acumulado es de '.$cantidad_acumulada_actual["quantity"].' se solicita que vaya a retirarlo');
+                                if ($this->email->send()) {
+                                    echo 'Correo electrónico enviado.';
+                                } else {
+                                    show_error($this->email->print_debugger());
+                                }
+                            }
                             $this->Acumulado->update($id_accumulated , $cantidad_acumulada_actual);
                        
 
