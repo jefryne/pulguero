@@ -52,7 +52,6 @@ class Usuarios extends CI_Controller {
 
 
 	public function register($id_usuario = null){
-   
         if ($this->session->userdata('id_usuario')) {
             if($this->session->userdata('rol') == 'Admin'){
                 $vdata["estado"] = $vdata["rol"] = $vdata["documento"] = $vdata["nombre"] = $vdata["apellido"] = $vdata["correoElectrónico"] = $vdata["numeroTelefono"] = "";
@@ -69,7 +68,6 @@ class Usuarios extends CI_Controller {
                         $vdata["rol"] = $usuario->rol;
                         $vdata["estado"] = $usuario->status_user;
                         $vdata["numeroTelefono"] = $usuario->cellphone;
-                
                     }
         
                 }
@@ -81,28 +79,25 @@ class Usuarios extends CI_Controller {
                     $data["user_last_name"] = $this->input->post("apellido");
                     $data["rol"] = $this->input->post("rol");
                     $data["cellphone"] = $this->input->post("numeroTelefono");
+                    
+                    if(empty($data["document_number"]) || empty($data["user_name"]) || empty($data["email"]) || empty($data["user_last_name"]) || empty($data["rol"]) || empty($data["cellphone"])){
+                        redirect(site_url('Usuarios/register?error=empty_fields'));
+                    }
          
-
-
-                    $vdata["documento"] = $this->input->post("documento");
-                    $vdata["nombre"] = $this->input->post("nombre");
-                    $vdata["apellido"] = $this->input->post("apellido");
-                    $vdata["rol"] = $this->input->post("rol");
-                    $vdata["numeroTelefono"] = $this->input->post("numeroTelefono");
-                    $vdata["correoElectrónico"] = $this->input->post("correoElectrónico");
+                    if($this->Usuario->verificar_correo($data["email"])){
+                        redirect(site_url('Usuarios/register?error=email_exist'));
+                    }
         
                     if(isset($id_usuario)){
                         $this->Usuario->update($id_usuario, $data);  
-                        redirect(site_url('Usuarios/listadoUsuarios'));
                     }else{
                         $id_usuario_insert = $this->Usuario->insert($data); 
                         if($data["rol"] == "Vendedor"){
                             $data_accumulated["id_user"] = $id_usuario_insert;
                             $data_accumulated["quantity"] =  0;
                             $this->Acumulado->insert($data_accumulated);
-                            
                         } 
-                        redirect(site_url('Usuarios/listadoUsuarios'));
+                        redirect(site_url('Usuarios/listadoUsuarios?success=true'));
                     }
                     $vdata["nombre_usuario"] = $this->session->userdata('nombres');
                     $vdata["rol_usuario"] = $this->session->userdata('rol');

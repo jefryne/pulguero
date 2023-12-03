@@ -13,7 +13,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
-    <!-- Layout styles -->
+    <!-- Layout styles --> 
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.png" />

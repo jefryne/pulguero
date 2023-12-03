@@ -277,6 +277,38 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const successParam = urlParams.get('success');
+
+      console.log(successParam);
+      if (successParam !== null) {
+        if(successParam == 'true'){
+          Swal.fire({
+            title: '<b class="font-weight-bold">¡Bien!</b>',
+            text: 'Usuario creado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+                title: 'text-dark',
+                content: 'text-dark'
+            }
+          });
+        }else{
+          Swal.fire({
+            title: '<b class="font-weight-bold">¡Error!</b>',
+            text: 'No se pudo crear el usuario',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+                title: 'text-dark',
+                content: 'text-dark'
+            }
+          });
+        }
+      }
+    </script>
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

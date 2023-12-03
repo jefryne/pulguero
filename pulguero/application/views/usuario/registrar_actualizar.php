@@ -238,10 +238,10 @@
                     <h4 class="card-title">Complete los siguientes datos para crear un usuario</h4>
                     <!-- <p class="card-description"> Basic form layout </p> -->
                     <br>
-                    <?php echo form_open('');?>
+                    <?php echo form_open('Usuarios/register', 'id="myForm"');?>
                       <div class="form-group">
                           <?php
-                              echo form_label('documento', 'documento');
+                              echo form_label('Documento', 'documento');
 
                               $data = [
                                   'name'      => 'documento',
@@ -255,7 +255,7 @@
                       </div>
                       <div class="form-group">
                           <?php
-                              echo form_label('nombre', 'nombre');
+                              echo form_label('Nombre', 'nombre');
 
                               $data = [
                                   'name'      => 'nombre',
@@ -269,7 +269,7 @@
                       </div>
                       <div class="form-group">
                           <?php
-                              echo form_label('apellido', 'apellido');
+                              echo form_label('Apellido', 'apellido');
 
                               $data = [
                                   'name'      => 'apellido',
@@ -282,7 +282,7 @@
                       </div>
                       <div class="form-group">
                           <?php
-                              echo form_label('correoElectrónico', 'correoElectrónico');
+                              echo form_label('Correo Electrónico', 'correoElectrónico');
 
                               $data = [
                                   'name'      => 'correoElectrónico',
@@ -295,7 +295,7 @@
                       </div>
                       <div class="form-group">
                           <?php
-                              echo form_label('numeroTelefono', 'numeroTelefono');
+                              echo form_label('Numero de Telefono', 'numeroTelefono');
 
                               $data = [
                                   'name'      => 'numeroTelefono',
@@ -307,7 +307,7 @@
                               ?>
                       </div>
                       <?php
-                        echo form_label('rol', 'rol');
+                        echo form_label('Rol', 'rol');
                         $options = array(
                                 'Admin'       => 'Admin',
                                 'SuperVisor'  => 'SuperVisor',
@@ -322,13 +322,11 @@
                               'name' => 'mysubmit',
                               'id'  =>  'boton',
                               'type' => 'submit',
-                              'class' => 'btn btn-primary mt-2',
-                              'content' => '!enviar'
+                              'class' => 'btn btn-primary mt-3 py-2',
+                              'content' => 'Registrar'
                           );
                           echo form_button($data)
                       ?> 
-
-
                   <?php echo form_close();?>
                   </div>
                 </div>
@@ -351,6 +349,63 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- SCRIPT PARA MANEJO DE ESEPCIONES -->
+    <script>
+      document.getElementById('myForm').addEventListener('submit', function(e) {
+        var documento = document.getElementsByName('documento')[0].value;
+        var nombre = document.getElementsByName('nombre')[0].value;
+        var apellido = document.getElementsByName('apellido')[0].value;
+        var correo = document.getElementsByName('correoElectrónico')[0].value;
+        var telefono = document.getElementsByName('numeroTelefono')[0].value;
+
+        console.log(documento);
+        if(documento === '' || nombre === '' || apellido === '' || correo === '' || telefono === ''){
+          Swal.fire({
+            title: '<b class="font-weight-bold">ERROR</b>',
+            text: 'Debe ingresar todos los datos!',
+            icon: 'info',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+                title: 'text-dark',
+                content: 'text-dark'
+            }
+          });
+          e.preventDefault();
+        }
+      });
+    </script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const myParam = urlParams.get('error');
+
+      if(myParam != null){
+       if(myParam == 'email_exist'){
+        Swal.fire({
+            title: '<b class="font-weight-bold">ERROR</b>',
+            text: 'El correo ingresado ya existe!',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            footer: '<a href="<?php echo base_url();?>Usuarios/register">Recuperar contrasena</a>',
+            customClass: {
+                title: 'text-dark',
+                content: 'text-dark'
+            }
+        });
+       }
+      }
+        // Aquí puedes utilizar SweetAlert2
+        /* Swal.fire({
+            title: '<b class="font-weight-bold">¡Hola!</b>',
+            text: 'SweetAlert2 con colores de Bootstrap',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+                title: 'text-dark',
+                content: 'text-dark'
+            }
+        }); */
+    </script>
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
