@@ -118,4 +118,14 @@ class Dashboard extends CI_Controller {
         $this->session->sess_destroy();
         redirect(site_url('Dashboard/login'), 'refresh');
     }
+
+
+    public function getCategory() {
+        $this->load->model('Categoria');
+
+        $topCategory = $this->Categoria->topCategory();
+
+        header('Content-Type: application/json');
+        echo json_encode($topCategory);
+    }
 }
