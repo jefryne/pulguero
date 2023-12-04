@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.3.67/css/materialdesignicons.min.css" integrity="sha512-nRzny9w0V2Y1/APe+iEhKAwGAc+K8QYCw4vJek3zXhdn92HtKt226zHs9id8eUq+uYJKaH2gPyuLcaG/dE5c7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.15.0/css/flag-icons.min.css" integrity="sha512-bZBu2H0+FGFz/stDN/L0k8J0G8qVsAL0ht1qg5kTwtAheiXwiRKyCq1frwfbSFSJN3jooR5kauE0YjtPzhZtJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <!-- endinject -->
     <!-- Plugin css for this page -->
+
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/jvectormap/jquery-jvectormap.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/owl-carousel-2/owl.carousel.min.css">
@@ -183,11 +184,11 @@
         <div class="main-panel">
           <div class="content-wrapper">        
             <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card" style="width: 50%; margin: auto; text-align: center;">
+              <div class="col-lg-6 grid-margin stretch-card" >
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Productos más vendidos</h4>
-                    <canvas id="transaction-history" class="transaction-chart"></canvas>
+                    <canvas id="transaction-history" width="200" class="transaction-chart"></canvas>
                     <div id="categoryContainer">
                       <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
@@ -217,6 +218,20 @@
                   </div>
                 </div>
               </div>
+              <div class="col-6 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Ventas Mensuales</h4>
+                    <canvas id="chartVentasMensuales" width="500" height="200"></canvas>
+                  </div>
+                </div>
+                <div class="card mt-2">
+                  <div class="card-body">
+                    <h4 class="card-title">Ventas de hoy</h4>
+                    <canvas id="chartVentasDiarias" width="500" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- content-wrapper ends -->
@@ -235,6 +250,72 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('chartVentasMensuales').getContext('2d');
+
+      const data = {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        datasets: [{
+          label: 'Ventas Mensuales',
+          data: [5000, 100, 3, 5, 2, 3, 10, 15, 8, 5, 20, 7],
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }]
+      };
+
+      new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Ventas Mensuales'
+            }
+          }
+        },
+      });
+
+      const ctx2 = document.getElementById('chartVentasDiarias').getContext('2d');
+
+      const data2 = {
+        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+        datasets: [{
+          label: 'Ventas Diarias',
+          data: [5000, 100, 3, 5, 2, 3, 10],
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }]
+      };
+
+      new Chart(ctx2, {
+        type: 'line',
+        data: data2,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Ventas Diarias'
+            }
+          }
+        },
+      });
+    });
+  </script>
+    
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -254,6 +335,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="<?php echo base_url();?>assets/js/dashboard.js"></script>
+    
     <!-- End custom js for this page -->
   </body>
 </html>

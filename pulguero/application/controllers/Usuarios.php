@@ -168,10 +168,9 @@ class Usuarios extends CI_Controller {
         if ($this->session->userdata('id_usuario')) {
             if($this->session->userdata('rol') == 'Admin'){
                 $this->Usuario->borrar($usuario_id);
-
-                redirect('Usuarios/listadoUsuarios');
+                redirect('Usuarios/listadoUsuarios?delete=true');
             }else{
-                redirect('Dashboard/dashboard');
+                redirect('Dashboard/dashboard?error=not_permission');
             }
         } else {
             redirect(site_url('Dashboard/login'));
