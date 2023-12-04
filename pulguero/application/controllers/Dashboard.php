@@ -128,4 +128,23 @@ class Dashboard extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($topCategory);
     }
+
+    public function getAAnnualSales(){
+        $this->load->model('dash_chart');
+
+        $globalAnnualSales = $this->dash_chart->globalAnnualSales();
+
+        header('Content-Type: application/json');
+        echo json_encode($globalAnnualSales);
+    }
+
+
+    public function getDayliSales(){
+        $this->load->model('dash_chart');
+
+        $globalWeekSales = $this->dash_chart->globalWeekSales();
+
+        header('Content-Type: application/json');
+        echo json_encode($globalWeekSales);
+    }
 }
