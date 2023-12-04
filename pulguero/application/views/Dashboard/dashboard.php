@@ -227,7 +227,7 @@
                 </div>
                 <div class="card mt-2">
                   <div class="card-body">
-                    <h4 class="card-title">Ventas de hoy</h4>
+                    <h4 class="card-title">Ventas diarias</h4>
                     <canvas id="chartVentasDiarias" width="500" height="200"></canvas>
                   </div>
                 </div>
@@ -255,38 +255,86 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       const ctx = document.getElementById('chartVentasMensuales').getContext('2d');
+      $.ajax({
+        url: "<?php echo base_url();?>index.php/Dashboard/getAAnnualSales",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+          var dineroMes = data.map(item => item.Ventas);
+          console.log(dineroMes);
+          const chartData = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            datasets: [{
+              label: 'Ventas Mensuales',
+              data: dineroMes,
+              fill: false,
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }]
+          };
 
-      const data = {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        datasets: [{
-          label: 'Ventas Mensuales',
-          data: [5000, 100, 3, 5, 2, 3, 10, 15, 8, 5, 20, 7],
-          fill: false,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        }]
-      };
-
-      new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
+          new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Ventas Mensuales'
+                }
+              }
             },
-            title: {
-              display: true,
-              text: 'Ventas Mensuales'
-            }
-          }
-        },
+          });
+        }
       });
+      
 
       const ctx2 = document.getElementById('chartVentasDiarias').getContext('2d');
+      $.ajax({
+        url: "<?php echo base_url();?>index.php/Dashboard/getDayliSales",
+        type: "GET",
+        dataType: "json",
+        success: function(datav2){
+          console.log(datav2);
+          var dineroDia = datav2.map(item => item.Ventas);
+          var dineroDiaRotornado = dineroDia.reverse();
+          console.log("ACA ESTA EL DINERO DE LA SEMNANA LALALA"+dineroDia);
+          const data2 = {
+            labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+            datasets: [{
+              label: 'Ventas Diarias',
+              data: dineroDiaRotornado,
+              fill: false,
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }]
+          };
 
-      const data2 = {
+          new Chart(ctx2, {
+            type: 'line',
+            data: data2,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Ventas Diarias'
+                }
+              }
+            },
+          });
+        }
+
+      })
+      /* const data2 = {
         labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
         datasets: [{
           label: 'Ventas Diarias',
@@ -312,7 +360,7 @@
             }
           }
         },
-      });
+      }); */
     });
   </script>
     
