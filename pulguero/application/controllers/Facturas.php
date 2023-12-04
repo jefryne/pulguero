@@ -42,6 +42,19 @@ class Facturas extends CI_Controller {
         
     }
 
+    public function generarBarras($id_inventory = null){
+        if($this->session->userdata('id_usuario')){
+            if($this->session->userdata('rol') == 'Admin' || $this->session->userdata('rol') == 'SuperVisor'){
+        
+                $vdata['id_inventory'] = $id_inventory;
+
+                $this->load->view('factura/Barras', $vdata);
+            }
+        }
+        
+    }
+
+
 
 
     public function verFactura($invoice_id = null){
