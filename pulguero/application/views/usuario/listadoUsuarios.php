@@ -239,7 +239,6 @@
                           </tr>
                           <tr>
                             <th> logo </th>
-                            <th> id </th>
                             <th> documento </th>
                             <th> nombre </th>
                             <th> telefono </th>
@@ -251,13 +250,11 @@
                             <td class="py-1">
                               <img src="<?php echo base_url();?>assets/images/faces-clipart/pic-1.png" alt="image" />
                             </td>
-                            <td><?= $usuario->id_user;?></td>
                             <td><?= $usuario->document_number;?></td>
                             <td><?= $usuario->user_name;?></td>
                             <td><?= $usuario->cellphone;?></td>
                             <td><a class="badge badge-primary" href="<?php echo site_url('Usuarios/register/'); ?><?php echo $usuario->id_user;?>">Editar</a></td>
-                            <td><a class="badge badge-danger delete-btn" data-swal-toast-template="#my-template" href="<?php echo site_url('Usuarios/borrar/') . $usuario->id_user; ?>" data-id="<?php echo $usuario->id_user; ?>">Eliminar</a></td>
-                            <!-- <td><a class="badge badge-danger" href="<?php echo site_url('Usuarios/borrar/'); ?><?php echo $usuario->id_user;?>">Eliminar</a></td> -->
+                            <td><a class="badge badge-danger delete-btn"  href="<?php echo site_url('Usuarios/borrar/'); ?><?php echo $usuario->id_user;?>">Eliminar</a></td>
                           </tr>
                         <?php endforeach; ?>
                         </tbody>

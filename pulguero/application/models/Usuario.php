@@ -93,10 +93,11 @@ class Usuario extends CI_Model {
     public function obtenerUsuariosInactivos() {
         $this->db->select();
         $this->db->from($this->table);
-        $this->db->where_in('rol', ['Cliente', 'Vendedor']);
         $this->db->where('status_user', 0);
+    
         $query = $this->db->get();
         return $query->result();
+  
     }
 
     public function obtenerUsuariosClientesActivos() {
@@ -113,8 +114,8 @@ class Usuario extends CI_Model {
     public function obtenerUsuariosClientesInactivos() {
         $this->db->select();
         $this->db->from($this->table);
+        $this->db->where_in('rol', ['Cliente', 'Vendedor']);
         $this->db->where('status_user', 0);
-    
         $query = $this->db->get();
         return $query->result();
     }
