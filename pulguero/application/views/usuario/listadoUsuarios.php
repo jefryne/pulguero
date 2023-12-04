@@ -226,14 +226,13 @@
           <swal-param name="allowEscapeKey" value="false" />     
         </template>
         <!-- partial -->
-              
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-striped mt-5">
                         <thead>
-                        <tr>
+                          <tr>
                             <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios'); ?>">todos</a> </th>
                             <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios/1'); ?>">Activos</a>  </th>
                             <th> <a class="badge badge-primary" href="<?php echo site_url('Usuarios/listadoUsuarios/0'); ?>">Inactivos</a> </th>
@@ -243,7 +242,6 @@
                             <th> id </th>
                             <th> documento </th>
                             <th> nombre </th>
-                        
                             <th> telefono </th>
                           </tr>
                         </thead>
