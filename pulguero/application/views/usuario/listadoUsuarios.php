@@ -217,6 +217,14 @@
             </button>
           </div>
         </nav>
+        <!-- TEMPLATE SWINALERT -->
+        <template id="my-template">
+          <swal-title>
+            Quieres eliminar este usuario?
+          </swal-title>
+          <swal-icon type="warning" color="red"></swal-icon>
+          <swal-param name="allowEscapeKey" value="false" />     
+        </template>
         <!-- partial -->
               
               <div class="col-lg-12 grid-margin stretch-card">
@@ -250,7 +258,8 @@
                             <td><?= $usuario->user_name;?></td>
                             <td><?= $usuario->cellphone;?></td>
                             <td><a class="badge badge-primary" href="<?php echo site_url('Usuarios/register/'); ?><?php echo $usuario->id_user;?>">Editar</a></td>
-                            <td><a class="badge badge-danger" href="<?php echo site_url('Usuarios/borrar/'); ?><?php echo $usuario->id_user;?>">Eliminar</a></td>
+                            <td><a class="badge badge-danger delete-btn" data-swal-toast-template="#my-template" href="<?php echo site_url('Usuarios/borrar/') . $usuario->id_user; ?>" data-id="<?php echo $usuario->id_user; ?>">Eliminar</a></td>
+                            <!-- <td><a class="badge badge-danger" href="<?php echo site_url('Usuarios/borrar/'); ?><?php echo $usuario->id_user;?>">Eliminar</a></td> -->
                           </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -277,12 +286,42 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-swal-toast-template]').forEach(element => {
+          element.addEventListener('click', event => {
+            event.preventDefault();
+            const userid = element.getAttribute('data-id');
+            const template = element.getAttribute('data-swal-toast-template');
+            Swal.fire({
+              toast: true, 
+              icon: 'warning',
+              showConfirmButton: true,
+              showCancelButton: true, 
+              cancelButtonText: 'Cancelar',
+              confirmButtonText: 'Sisas',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              html: document.querySelector(template).innerHTML  
+            }).then(result => {
+              if (result.isConfirmed) {
+                window.location.href = `<?php echo site_url('Usuarios/borrar/'); ?>${userid}`;
+                console.log('Usuario eliminado');
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                console.log('Eliminación cancelada');
+              }
+            });
+          });
+        });
+      });
+    </script>
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       const successParam = urlParams.get('success');
-
+      const deleteParam = urlParams.get('delete');
       console.log(successParam);
+      console.log(deleteParam);
       if (successParam !== null) {
         if(successParam == 'true'){
           Swal.fire({
@@ -307,6 +346,16 @@
             }
           });
         }
+      }
+      if(deleteParam == 'true' && deleteParam !== null){
+        Swal.fire({
+          icon: "success",
+          title: "<b class='font-weight-bold'>SE HA ELIMINADO!</b>",
+          confirmButtonColor: '#3085d6',
+          customClass: {
+            title: 'text-dark',
+          },
+        });
       }
     </script>
     <script src="<?php echo base_url();?>assets/vendors/js/vendor.bundle.base.js"></script>
