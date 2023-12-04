@@ -3,7 +3,7 @@
 	# Incluyendo librerias necesarias #
     require "./assets/facturaitems/code128.php";
 
-    $pdf = new PDF_Code128('P','mm',array(80,80));
+    $pdf = new PDF_Code128('p','mm',array(80,80));
     $pdf->SetMargins(4,10,4);
     $pdf->AddPage();
     

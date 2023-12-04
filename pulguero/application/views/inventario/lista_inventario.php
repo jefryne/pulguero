@@ -257,7 +257,6 @@
                             <td class="nombre_categoria"><?= $inventario->nombre_categoria;?></td>
                             <td class="precio"><?= $inventario->price;?></td>
                             <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
-                            <td><button class="btnAgregar btn btn-primary">Agregar</button></td>
                             <td><a href="<?php echo site_url("Facturas/generarBarras")?>/<?php echo $inventario->id_inventory;?>" target="_blank" class="btn btn-primary">Generar</a></td>
                           </tr>
                         <?php endforeach; ?>
