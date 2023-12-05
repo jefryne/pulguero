@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2023 a las 20:29:14
+-- Tiempo de generación: 05-12-2023 a las 14:26:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -57,9 +57,9 @@ CREATE TABLE `accumulated` (
 --
 
 INSERT INTO `accumulated` (`id_accumulated`, `id_user`, `quantity`) VALUES
-(1, 2, 0),
+(1, 2, 3000),
 (2, 3, 0),
-(3, 5, 0);
+(3, 5, 1004000);
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,8 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id_category`, `category_name`) VALUES
 (1, 'dulces'),
 (2, 'ropa'),
-(3, 'celulares');
+(3, 'celulares'),
+(4, 'ropa elegante');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,13 @@ INSERT INTO `history` (`id_history`, `id_user`, `date_history`, `id_invoice`) VA
 (32, 1, '2023-12-02 16:05:17', 78),
 (33, 1, '2023-12-02 16:17:24', 79),
 (34, 1, '2023-12-02 17:32:25', 80),
-(35, 1, '2023-12-02 17:33:39', 81);
+(35, 1, '2023-12-02 17:33:39', 81),
+(36, 1, '2023-12-05 12:15:33', 82),
+(37, 1, '2023-12-05 12:17:32', 83),
+(38, 1, '2023-12-05 12:39:12', 84),
+(39, 1, '2023-12-05 12:50:05', 85),
+(40, 1, '2023-12-05 13:19:20', 86),
+(41, 1, '2023-12-05 13:19:29', 87);
 
 -- --------------------------------------------------------
 
@@ -139,7 +146,15 @@ INSERT INTO `inventory` (`id_inventory`, `name`, `description`, `id_user`, `id_c
 (8, 'caramelo', 'rico', 3, 3, 5000000, 0),
 (9, 'iphone', 'nuevo', 5, 3, 50000000, 0),
 (10, 'pantalon', 'nuevo', 3, 2, 500000000, 0),
-(11, 'pantalon', 'rico', 3, 2, 5000000, 0);
+(11, 'pantalon', 'rico', 3, 2, 5000000, 0),
+(12, 'gomitas', 'ricas', 3, 1, 20000, 0),
+(13, 'banana', 'rica', 2, 1, 30000, 0),
+(14, 'pantalon', 'bonito', 3, 2, 30000, 0),
+(15, 'iphone', 'nuevo', 3, 3, 5000000, 0),
+(16, 'pantalon', 'rojo', 5, 2, 40000, 0),
+(17, 'caramelo', 'rico', 3, 1, 50000, 0),
+(18, 'iphone', 'nuevo', 5, 3, 5000000, 0),
+(19, 'camisa', 'azul', 3, 4, 3000, 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +180,13 @@ INSERT INTO `invoice` (`id_invoice`, `date`, `total`) VALUES
 (78, '2023-12-02 16:05:14', 5000000.00),
 (79, '2023-12-02 16:17:22', 50000000.00),
 (80, '2023-12-02 17:32:23', 100000000.00),
-(81, '2023-12-02 17:33:39', 5000000.00);
+(81, '2023-12-02 17:33:39', 5000000.00),
+(82, '2023-12-05 12:15:33', 20000.00),
+(83, '2023-12-05 12:17:32', 60000.00),
+(84, '2023-12-05 12:39:09', 5000000.00),
+(85, '2023-12-05 12:50:05', 40000.00),
+(86, '2023-12-05 13:19:12', 5053000.00),
+(87, '2023-12-05 13:19:20', 5053000.00);
 
 -- --------------------------------------------------------
 
@@ -194,7 +215,18 @@ INSERT INTO `item_invoice` (`id_item`, `id_invoice`, `id_inventory`) VALUES
 (127, 78, 8),
 (128, 79, 9),
 (129, 80, 10),
-(130, 81, 11);
+(130, 81, 11),
+(131, 82, 12),
+(132, 83, 13),
+(133, 83, 14),
+(134, 84, 15),
+(135, 85, 16),
+(136, 86, 17),
+(137, 86, 18),
+(138, 86, 19),
+(139, 87, 17),
+(140, 87, 18),
+(141, 87, 19);
 
 -- --------------------------------------------------------
 
@@ -258,7 +290,8 @@ CREATE TABLE `withdrawal_history` (
 INSERT INTO `withdrawal_history` (`id_withdraw`, `id_accumulated`, `withdrawn_amount`, `withdrawal_date`, `id_user`) VALUES
 (1, 3, 0, '2023-12-02 17:25:07', 1),
 (2, 2, 0, '2023-12-02 17:32:32', 1),
-(3, 2, 500000, '2023-12-02 17:33:45', 1);
+(3, 2, 500000, '2023-12-02 17:33:45', 1),
+(4, 2, 515600, '2023-12-05 13:21:34', 1);
 
 --
 -- Índices para tablas volcadas
@@ -356,31 +389,31 @@ ALTER TABLE `accumulated`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_category` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `history`
 --
 ALTER TABLE `history`
-  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_history` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_inventory` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id_invoice` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_invoice` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `item_invoice`
 --
 ALTER TABLE `item_invoice`
-  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT de la tabla `liquidation`
@@ -398,7 +431,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `withdrawal_history`
 --
 ALTER TABLE `withdrawal_history`
-  MODIFY `id_withdraw` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_withdraw` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

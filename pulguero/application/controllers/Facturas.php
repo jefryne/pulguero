@@ -35,6 +35,7 @@ class Facturas extends CI_Controller {
                     // Agregar los datos del inventario al elemento de la factura
                     $vdata["items_factura"][$key]->inventory = $inventory_data;
                 }
+                $vdata["invoice_id"] = $invoice_id;
                 $vdata["nombre_verdedo"] = $this->session->userdata('nombres');
                 $this->load->view('factura/ticket', $vdata);
             }

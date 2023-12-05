@@ -64,7 +64,7 @@
     if ($("#transaction-history").length) {
       console.log("se llego");
       $.ajax({
-        url: 'http://localhost/pulguero/pulguero/index.php/Dashboard/getCategory', // La URL para la petición se debe cambiar en cada navegador hasta definir el dominio
+        url: 'http://localhost/pulguero/index.php/Dashboard/getCategory', // La URL para la petición se debe cambiar en cada navegador hasta definir el dominio
         type: "GET",
         dataType: "json",
         success: function(data){
